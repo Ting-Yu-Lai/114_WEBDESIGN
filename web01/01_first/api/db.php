@@ -49,7 +49,7 @@ class DB
 
     function e($sql)
     {
-        $this->pdo->exec($sql);
+        return $this->pdo->exec($sql);
     }
 
     function all(...$arg)
