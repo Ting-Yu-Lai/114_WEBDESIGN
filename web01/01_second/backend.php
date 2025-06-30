@@ -101,7 +101,7 @@
 					$file ="./backend/".$do.".php";
 
 					if(file_exists($file)) {
-						include $file;
+						include_once $file;
 					}else{
 						include_once "./backend/title.php";
 					}
