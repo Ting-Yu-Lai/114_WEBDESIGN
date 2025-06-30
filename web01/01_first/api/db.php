@@ -96,7 +96,7 @@ class DB
         if (isset($array['id'])) {
             $sql = "UPDATE $this->table SET ";
             $tmp = $this->a2s($array);
-            $sql .= join(" , ", $tmp) . " WHERE `id`='{$array['id']}'";
+            $sql .= join(" , "  , $tmp) . " WHERE `id`='{$array['id']}'";
         } else {
             $keys = "`" . join("`,`", array_keys($array)) . "`";
             $values = "'" . join("','", array_values($array)) . "'";
