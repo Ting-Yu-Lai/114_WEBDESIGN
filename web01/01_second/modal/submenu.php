@@ -1,0 +1,59 @@
+<?php
+include_once "../api/db.php"
+?>
+<h3>編輯次選單</h3>
+<hr>
+<form action="./api/submenu.php" method="post" enctype="multipart/form-data">
+    <div style="display:flex;margin:auto;width:70%;">
+        <div style="width:45%; ">次選單名稱</div>
+        <div style="width:45%; ">次選單連結網址</div>
+        <div style="width:10%; ">刪除</div>
+    </div>   
+    <?php
+        $rows=$Menu->all(['main_id'=>$_GET['id']]);
+        foreach($rows as $row):
+    ?>
+    <div style="display:flex;margin:auto;width:70%;">
+        <div style="width:45%;">
+            <input style="width:100%" type="text" name='text[]' value="<?=$row['text'];?>">
+        </div>
+        <div style="width:45%;">
+            <input style="width:100%" type="text" name='href[]' value="<?=$row['href'];?>" >
+            
+        </div>
+        <div style="width:10%">
+            <input style="width:100%" name='del[]' type="checkbox" value="<?=$row['id'];?>">
+        </div>
+        <input type="hidden" name="id[]" value="<?=$row['id'];?>">
+    </div>    
+    <div id="add"></div>
+    <?php endforeach; ?>
+
+
+    <div class="cent">
+        <input type="hidden" name='main_id' value="<?=$_GET['id'];?>">
+        <input type="hidden" name="table" value="<?=$_GET['table'];?>">
+
+        <button type="submit">修改確定</button>
+        <button type="reset">重置</button>
+        <button type="button" value="更多次選單" onclick="more()">更多次選單</button>
+    </div>
+</form>
+
+<script>
+    function more() {
+        let item = `
+        <div style="display:flex;margin:auto;width:70%;">
+            <div style="width:45%;">
+                <input style="width:100%" name='text2[]' type="text"  value="">
+            </div>
+            <div style="width:45%;">
+                <input style="width:100%" name='href2[]' type="text" value="" >
+            </div>
+            <div style="width:10%">
+            </div>
+        </div> 
+        `;
+        $("#add").append(item);
+    }
+</script>

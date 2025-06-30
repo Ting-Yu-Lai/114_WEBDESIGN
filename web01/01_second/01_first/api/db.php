@@ -1,34 +1,25 @@
 <?php
 session_start();
 date_default_timezone_set("Asia/Taipei");
-
-function a2s($array)
+function dd($array)
 {
-    $tmp = [];
-    foreach ($array as $key => $value) {
-        $tmp[] = "`$key`='$value'";
-    }
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
 }
 
 function q($sql)
 {
     $dsn = "mysql:host=localhost;dbname=db01;charset=utf8";
-    $pdo = new PDO($dsn, "", "");
-    return  $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-}
-
-function dd($data)
-{
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>";
+    $pdo = new PDO($dsn, 'root', "");
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function to($url)
 {
-    header("Location: $url");
-    exit();
+    header("location:" . $url);
 }
+
 
 class DB
 {
@@ -42,50 +33,46 @@ class DB
         $this->pdo = new PDO($this->dsn, 'root', '');
     }
 
+    function a2s($array)
+    {
+        $tmp = [];
+        foreach ($array as $key => $value) {
+            $tmp[] = "`$key` = '$value'";
+        }
+        return $tmp;
+    }
+
+    function q($sql)
+    {
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     function e($sql)
     {
         return $this->pdo->exec($sql);
     }
 
-    function q($sql)
-    {
-        return  $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    function a2s($array)
-    {
-        $tmp = [];
-        foreach ($array as $key => $value) {
-            $tmp[] = "`$key`='$value'";
-        }
-        return $tmp;
-    }
-
     function all(...$arg)
     {
-        $sql = "SELECT * FROM $this->table ";
+        $sql = "SELECT * FROM $this->table";
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
                 $tmp = $this->a2s($arg[0]);
-                $sql .= " WHERE " . join(" AND ", $tmp);
+                $sql = $sql . " WHERE " . join(" AND ", $tmp);
             } else {
                 $sql .= $arg[0];
             }
-        }
-
-        if (isset($arg[1])) {
             $sql .= $arg[1];
         }
         return $this->q($sql);
     }
-
 
     function find($id)
     {
         $sql = "SELECT * FROM $this->table ";
         if (is_array($id)) {
             $tmp = $this->a2s($id);
-            $sql .= " WHERE " . join(" AND ", $tmp);
+            $sql = $sql . " WHERE " . join(" AND ", $tmp);
         } else {
             $sql .= " WHERE `id`='$id'";
         }
@@ -94,10 +81,10 @@ class DB
 
     function del($id)
     {
-        $sql = "DELETE FROM $this->table ";
+        $sql = "DELETE FROM $this->table" ;
         if (is_array($id)) {
             $tmp = $this->a2s($id);
-            $sql .= " WHERE " . join(" AND ", $tmp);
+            $sql = $sql . " WHERE " . join(" AND ", $tmp);
         } else {
             $sql .= " WHERE `id`='$id'";
         }
@@ -106,23 +93,20 @@ class DB
 
     function save($array)
     {
-        if (isset(($array['id']))) {
+        if (isset($array['id'])) {
             $sql = "UPDATE $this->table SET ";
             $tmp = $this->a2s($array);
             $sql .= join(" , ", $tmp) . " WHERE `id`='{$array['id']}'";
         } else {
             $keys = "`" . join("`,`", array_keys($array)) . "`";
             $values = "'" . join("','", array_values($array)) . "'";
-
             $sql = "INSERT INTO `$this->table` ($keys) VALUES ($values)";
         }
         return $this->e($sql);
     }
+
+
 }
 
-$Title = new DB('title');
-$Total = new DB('total');
-$Bottom = new DB('bottom');
-$Image = new DB('image');
-$News = new DB('news');
-$Menu = new DB('menu');
+$titles = new DB('title');
+?>
