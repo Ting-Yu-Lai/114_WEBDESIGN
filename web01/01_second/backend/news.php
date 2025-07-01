@@ -27,7 +27,7 @@
 				                        <textarea type="text" name="text[]" id=""  style="width:90%;height:60px;" > <?= $row['text']; ?> </textarea>
 				                    </td>
 				                    <td>
-				                        <input type="checkbox" name="sh" id="" value="<?= $row['id']; ?>"
+				                        <input type="checkbox" name="sh[]" id="" value="<?= $row['id']; ?>"
 				                            <?= ($row['sh'] == 1) ? "checked" : ""; ?>>
 				                    </td>
 				                    <td>
