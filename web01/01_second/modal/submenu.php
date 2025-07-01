@@ -26,8 +26,8 @@ include_once "../api/db.php"
         </div>
         <input type="hidden" name="id[]" value="<?=$row['id'];?>">
     </div>    
-    <div id="add"></div>
     <?php endforeach; ?>
+    <div id="add"></div>
 
 
     <div class="cent">

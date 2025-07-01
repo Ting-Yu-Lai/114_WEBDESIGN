@@ -33,6 +33,34 @@
                 <div id="menuput" class="dbor">
                     <!--主選單放此-->
                     <span class="t botli">主選單區</span>
+                    <?php
+                    $menus = $Menu->all(['main_id'=>0]);
+                    foreach ($menus as $menu) {
+                        echo "<div class='mainmu'>";
+                        echo "<a href='{$menu['href']}'>";
+                        echo $menu['text'];
+                        echo "</a>";
+                        // 如果次選單的id跟主選單的main_id一樣就代表那是主選單的次選單
+                        if($Menu->count(['main_id'=>$menu['id']])>0) {
+                            $subs=$Menu->all(['main_id'=>$menu['id']]);
+                            echo "<div class='mw'>";
+                            foreach($subs as $sub) {
+
+                                 echo "<div class='mainmu2'>";
+                                 echo "<a href='{$sub['href']}'>";
+                                 echo $sub['text'];
+                                 echo "</a>";
+                                 echo "</div>";
+
+                            }
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                    }
+
+
+
+                    ?>
                 </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
                     <span class="t">進站總人數 :
@@ -60,14 +88,16 @@
                         <img src="./icon/up.jpg" alt="">
                     </div>
                     <?php
-                        $images=$Image->all(['sh'=>1]);
-                        foreach ($images as $key => $image):
-                    ?>
-                    <div class="cent im" id="ssaa<?=$key;?>">
-                        <img src="./images/<?=$image['img'];?>"
-                            style="width:150px;height:103px;border:3px solid orange;margin:2px;" alt="">
+                    $images = $Image->all(['sh'=>1]);
+                    foreach($images as $key => $image):
+                        ?>
+                    <div class="cent im" id="ssaa<?=$key;?>" >
+                        <img src="./images/<?=$image['img'];?>" alt="" style="width:150px;height:103px;border:3px solid orange;margin:2px;">
                     </div>
-                    <?php endforeach;?>
+                    <?php
+                    endforeach;
+                    ?>
+                    
                     <div class="cent" onclick="pp(2)">
                         <img src="./icon/dn.jpg" alt="">
                     </div>
@@ -80,7 +110,7 @@
                         if (x == 1 && nowpage - 1 >= 0) {
                             nowpage--;
                         }
-                        if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+                        if (x == 2 && (nowpage + 1) <= num * 1 - 3) {
                             nowpage++;
                         }
                         $(".im").hide()
