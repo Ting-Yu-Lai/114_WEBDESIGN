@@ -2,7 +2,8 @@
 session_start();
 date_default_timezone_set("Asia/Taipei");
 
-function to ($url) {
+function to($url)
+{
     header("location:$url");
 }
 
@@ -65,42 +66,47 @@ class DB
     {
         $sql = "SELECT * FROM $this->table ";
         if (isset($arg[0])) {
-            $tmp = $this->a2s($arg[0]);
-            $sql .= ' WHERE ' . join(" AND ", $tmp);
-        } else {
-            $sql .= $arg[0];
+            if (is_array($arg[0])) {
+                $tmp = $this->a2s($arg[0]);
+                $sql .= ' WHERE ' . join(" AND ", $tmp);
+            } else {
+                $sql .= $arg[0];
+            }
         }
-        if(isset($arg[1])) {
-            $sql .= $arg[1];
+        if (isset($arg[1])) {
+                $sql .= $arg[1];
         }
-        return $this->q($sql);
+            return $this->q($sql);
     }
 
-    function find($id) {
-        if(is_array($id)) {
+    function find($id)
+    {
+        if (is_array($id)) {
             $tmp = $this->a2s($id);
-            $sql = "SELECT * FROM $this->table WHERE ".join(" AND ", $tmp);
-        }else{
+            $sql = "SELECT * FROM $this->table WHERE " . join(" AND ", $tmp);
+        } else {
             $sql = "SELECT * FROM $this->table WHERE `id`='$id'";
         }
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
-    function del($id) {
-        if(is_array($id)) {
+    function del($id)
+    {
+        if (is_array($id)) {
             $tmp = $this->a2s($id);
-            $sql = "DELETE FROM $this->table WHERE ".join(" AND ", $tmp);
-        }else{
+            $sql = "DELETE FROM $this->table WHERE " . join(" AND ", $tmp);
+        } else {
             $sql = "DELETE FROM $this->table WHERE `id`='$id'";
         }
         return $this->e($sql);
     }
 
-    function save($array) {
-        if(isset($array['id'])){
+    function save($array)
+    {
+        if (isset($array['id'])) {
             $sql = "UPDATE $this->table SET ";
-            $tmp =$this->a2s($array);
-            $sql .= join(" , ",$tmp) . "WHERE `id`='{$array['id']}'";
+            $tmp = $this->a2s($array);
+            $sql .= join(" , ", $tmp) . "WHERE `id`='{$array['id']}'";
         } else {
             $sql = "INSERT INTO $this->table ";
             $keys = join("`,`", array_keys($array));
@@ -111,5 +117,4 @@ class DB
     }
 }
 
-$Title=new DB('title');
-?>
+$Title = new DB('title');

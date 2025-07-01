@@ -3,9 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>卓越科技大學校園資訊系統</title>
-<link href="./css.css" rel="stylesheet" type="text/css">
+<link href="./css/css.css" rel="stylesheet" type="text/css">
 <script src="./js/jquery-3.4.1.js"></script>
-<script src="./js.js"></script>
+<script src="./js/js.js"></script>
 </head>
 
 <body>
@@ -25,8 +25,7 @@
                     	                            <span class="t botli">主選單區</span>
                                                 </div>
                     <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-                    	<span class="t">進站總人數 : 
-                        	1                        </span>
+                    	<span class="t">進站總人數 :1 </span>
                     </div>
         		</div>
                 <div class="di" style="height:540px; border:#999 1px solid; width:53.2%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">

@@ -11,6 +11,32 @@
                                     <td></td>
                                 </tr>
                             </tbody>
+                            <?php
+                                $rows = ${ucfirst($do)}->all();
+                            foreach($rows as $row):
+                            ?>
+                            <tbody>
+                                <tr>
+                                    <td width="45%">
+                                        <img src="./images/<?=$row['img'];?>" style="width:300px;height:30px;" alt="">
+                                    </td>
+                                    <td width="23%">
+                                        <input type="text" name="text[]" id="" value="<?=$row['text'];?>">
+                                    </td>
+                                    <td width="7%">
+                                        <input type="radio" name="sh" id="" value="<?=$row['id']; ?>">
+                                    </td>
+                                    <td width="7%">
+                                        <input type="checkbox" name="del[]" id="" value="<?=$row['id'];?>">
+                                    </td>
+                                    <td>
+                                        <input type="button" value="更新圖片" onclick="op('#cover','#cvr','./modal/update.php?id=<?=$do;?>&table=<?=$do;?>')">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <?php
+                                endforeach;
+                            ?>
                         </table>
                         <table style="margin-top:40px; width:70%;">
                             <tbody>
@@ -29,6 +55,5 @@
                                 </tr>
                             </tbody>
                         </table>
-
                     </form>
                 </div>
