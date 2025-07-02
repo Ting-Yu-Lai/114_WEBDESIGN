@@ -1,13 +1,12 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-    <p class="t cent botli">網站標題管理</p>
+    <p class="t cent botli">動態文字廣告管理</p>
     <form method="post" action="./api/edit.php">
         <table width="100%">
             <tbody>
                 <tr class="yel">
-                    <td width="45%">網站標題</td>
-                    <td width="23%">替代文字</td>
-                    <td width="7%">顯示</td>
-                    <td width="7%">刪除</td>
+                    <td width="80%">動態文字廣告</td>
+                    <td width="10%">顯示</td>
+                    <td width="10%">刪除</td>
                     <td></td>
                 </tr>
             </tbody>
@@ -17,20 +16,17 @@
             ?>
                 <tbody>
                     <tr>
-                        <td width="45%">
-                            <img src="./images/<?= $row['img']; ?>" style="width:300px;height:30px;" alt="">
-                        </td>
-                        <td width="23%">
+                        <td width="80%">
                             <input type="text" name="text[]" id="" value="<?= $row['text']; ?>">
                         </td>
-                        <td width="7%">
-                            <input type="radio" name="sh" id="" value="<?= $row['id'];?>" <?=($row['sh']==1)?"checked":"";?>>
+                        <td width="10%">
+                            <input type="checkbox" name="sh[]" id="" value="<?= $row['id'];?>" <?=($row['sh']==1)?"checked":"";?>>
                         </td>
-                        <td width="7%">
+                        <td width="10%">
                             <input type="checkbox" name="del[]" id="" value="<?= $row['id']; ?>">
                         </td>
                         <td>
-                            <input type="button" value="更新圖片" onclick="op('#cover','#cvr','./modal/update.php?id=<?=$row['id'];?>&table=<?= $do; ?>')">
+                            <input type="button" value="新增動態文字廣告" onclick="op('#cover','#cvr','./modal/update.php?id=<?= $do; ?>&table=<?= $do; ?>')">
                         </td>
                     </tr>
                     <!-- 我們要把input id 傳送給edit去做資料表讀取匯入 -->

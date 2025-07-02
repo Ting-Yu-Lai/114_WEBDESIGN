@@ -1,0 +1,7 @@
+「ad news，去 img，文字公告輕鬆成」
+「image、mvim，除 text，圖片動畫即刻生」
+
+admin 三欄 id、acc、pw；
+bottom 兩欄 id、bottom，
+total 兩欄 id、total，
+menu 五欄 id、text、href、main_id、sh；

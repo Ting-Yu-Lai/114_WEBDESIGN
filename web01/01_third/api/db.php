@@ -25,7 +25,7 @@ function dd($data)
 
 function q($sql)
 {
-    $dsn = "mysql:host=localhost;dbname:db02=charset=utf8";
+    $dsn = "mysql:host=localhost;dbname=db02;charset=utf8";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -78,7 +78,23 @@ class DB
         }
             return $this->q($sql);
     }
-
+    
+    function count(...$arg)
+    {
+        $sql = "SELECT COUNT(*) FROM $this->table ";
+        if (isset($arg[0])) {
+            if (is_array($arg[0])) {
+                $tmp = $this->a2s($arg[0]);
+                $sql .= ' WHERE ' . join(" AND ", $tmp);
+            } else {
+                $sql .= $arg[0];
+            }
+        }
+        if (isset($arg[1])) {
+                $sql .= $arg[1];
+        }
+            return $this->pdo->query($sql)->fetchColumn();
+    }
     function find($id)
     {
         if (is_array($id)) {
@@ -118,3 +134,11 @@ class DB
 }
 
 $Title = new DB('title');
+$Ad = new DB('ad');
+$Image = new DB('image');
+$Mvim = new DB('mvim');
+$Menu = new DB('menu');
+$Admin = new DB('admin');
+$Bottom = new DB('bottom');
+$Total = new DB('total');
+$News = new DB('news');
