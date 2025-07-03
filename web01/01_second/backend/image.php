@@ -12,6 +12,8 @@
 							</tbody>
 							<?php
 							$all = count(${ucfirst($do)}->all());
+							// div:總顯示數量
+							// pages:總頁數
 							$div=3;
 							$pages = ceil($all / $div);
 							$now=$_GET['p']??1;
@@ -50,7 +52,7 @@
 							<?php for($i = 1; $i <= $pages; $i++): 
 								$size=($now==$i)?'32px':'';
 							?>
-							<a href="?do=<?=$do;?>&p=<?=$i?>" style="font-size:<?=$size;?>;"> <?=$i;?> </a>
+							<a href="?do=<?=$do;?>&p=<?=$i?>" style="font-size:<?=$size;?>;"> <?=$i;?>
 							<?php endfor;?>
 
 							<?php if($now+1 <= $pages):?> 
