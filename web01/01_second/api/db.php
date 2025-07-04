@@ -146,3 +146,4 @@ $Image = new DB('image');
 $News = new DB('news');
 $Menu = new DB('menu');
 $Mvim = new DB('mvim');
+$Admin = new DB('admin');
