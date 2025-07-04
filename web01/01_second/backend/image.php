@@ -11,10 +11,11 @@
 								</tr>
 							</tbody>
 							<?php
+							// 計算總數量
 							$all = count(${ucfirst($do)}->all());
 							// div:總顯示數量
-							// pages:總頁數
 							$div=3;
+							// pages:總頁數
 							$pages = ceil($all / $div);
 							$now=$_GET['p']??1;
 							$start = ($now - 1)*$div;
