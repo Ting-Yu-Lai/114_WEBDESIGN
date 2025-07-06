@@ -11,7 +11,7 @@
             </tbody>
             <?php
             // 取得資料表的總比數
-            $all = $News->count(${ucfirst($do)}->all());
+            $all = $News->count();
             // 每頁顯示的比數
             $div = 3;
             // ceil()向上取整數，取得總頁數
@@ -45,10 +45,17 @@
             ?>
         </table>
         <div class="cent">
-            <?php
-                if($now - 1 > 0):
+            <?php if($now - 1 > 0):?>
+                <a href="?do=<?=$do;?>&p=<?=$now-1;?>"> < </a>
+            <?php endif; ?>
+            <?php 
+                for($i =1; $i <= $pages; $i++): 
+                $size = ($now == $i) ? '24px':'';
             ?>
-            <a href="?do=<?=$do;?>&p=<?=$do;?>"><</a>
+                <a href="?do=<?= $do;?>&p=<?=$now;?>" style="font-size:<?=$size;?>"> <?= $i;?></a>
+            <?php endfor; ?>
+            <?php if($now + 1 <= $pages):?>
+                <a href="?do=<?=$do;?>&p=<?=$now+1;?>"> > </a>
             <?php endif; ?>
         </div>
         <table style="margin-top:40px; width:70%;">
