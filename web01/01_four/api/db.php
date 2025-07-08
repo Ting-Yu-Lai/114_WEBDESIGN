@@ -27,13 +27,13 @@ function to($url)
 
 function q($sql)
 {
-    $dsn = "mysql:host=localhost;dbname=db04;charset=utf-8";
+    $dsn = "mysql:host=localhost;dbname=db04;charset=utf8";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 function e($sql)
 {
-    $dsn = "mysql:host=localhost;dbname=db04;charset=utf-8";
+    $dsn = "mysql:host=localhost;dbname=db04;charset=utf8";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->exec($sql);
 }
@@ -102,44 +102,46 @@ class DB
         }
         return $this->pdo->query($sql)->fetchColumn();
     }
-    
-    function find($id) {
-            $sql = "SELECT * FROM $this->table ";
-            if (is_array($id)) {
-                $tmp = $this->a2s($id);
-                $sql .= " WHERE " .join(" AND ", $tmp);
-            } else {
-                $sql .= " WHERE `id` = '$id'";
-            }
+
+    function find($id)
+    {
+        $sql = "SELECT * FROM $this->table ";
+        if (is_array($id)) {
+            $tmp = $this->a2s($id);
+            $sql .= " WHERE " . join(" AND ", $tmp);
+        } else {
+            $sql .= " WHERE `id` = '$id'";
+        }
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
-    function del($id) {
-            $sql = " DELETE  FROM $this->table ";
-            if (is_array($id)) {
-                $tmp = $this->a2s($id);
-                $sql .= " WHERE " .join(" AND ", $tmp);
-            } else {
-                $sql .= " WHERE `id` = '$id'";
-            }
-        return $this->e($sql);
-    }
-    
-
-    function save($array) {
-        if(isset($array['id'])) {
-            $sql = " UPDATE $this->table SET ";
-            $tmp = $this->a2s($array);
-            $sql .= join(" , ",$tmp) . " WHERE `id` = '{$array['id']}'";
-        }else {
-            $sql = " INSERT INTO $this->table ";
-            $keys = "`" . join("`,`",array_keys($array)) . "`";
-            $values = "'" . join("','",array_values($array)) . "'";
-            $sql .= "($keys) VALUES ($values)";
+    function del($id)
+    {
+        $sql = " DELETE  FROM $this->table ";
+        if (is_array($id)) {
+            $tmp = $this->a2s($id);
+            $sql .= " WHERE " . join(" AND ", $tmp);
+        } else {
+            $sql .= " WHERE `id` = '$id'";
         }
         return $this->e($sql);
     }
 
+
+    function save($array)
+    {
+        if (isset($array['id'])) {
+            $sql = " UPDATE $this->table SET ";
+            $tmp = $this->a2s($array);
+            $sql .= join(" , ", $tmp) . " WHERE `id` = '{$array['id']}'";
+        } else {
+            $sql = " INSERT INTO $this->table ";
+            $keys = "`" . join("`,`", array_keys($array)) . "`";
+            $values = "'" . join("','", array_values($array)) . "'";
+            $sql .= "($keys) VALUES ($values)";
+        }
+        return $this->e($sql);
+    }
 }
 
 $Title = new DB('title');
@@ -151,9 +153,10 @@ $Bottom = new DB('bottom');
 $News = new DB('news');
 $Menu = new DB('menu');
 
-if(!isset($_SESSION['visit'])) {
-    $t = $Total->find(1);
+if (!isset($_SESSION['visit'])) {
+    $t = $Total->find(5);
     $t['total']++;
     $Total->save($t);
-    $_SESSION['visit']=1;
+    $_SESSION['visit'] = 1;
 }
+?>
