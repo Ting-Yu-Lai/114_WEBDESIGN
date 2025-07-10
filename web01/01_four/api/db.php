@@ -47,8 +47,8 @@ class DB
 
     function all(...$arg)
     {
+        $sql = "SELECT * FROM $this->table ";
         if (isset($arg[0])) {
-            $sql = "SELECT * FROM $this->table ";
             if (is_array($arg[0])) {
                 $tmp = $this->a2s($arg[0]);
                 $sql .= " WHERE " . join(" AND ", $tmp);
@@ -65,8 +65,8 @@ class DB
 
     function count(...$arg)
     {
+        $sql = "SELECT COUNT(*) FROM $this->table ";
         if (isset($arg[0])) {
-            $sql = "SELECT COUNT(*) FROM $this->table ";
             if (is_array($arg[0])) {
                 $tmp = $this->a2s($arg[0]);
                 $sql .= " WHERE " . join(" AND ", $tmp);
@@ -90,7 +90,7 @@ class DB
         } else {
             $sql .= " WHERE `id` = '$id'";
         }
-        return $this->e($sql);
+        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
     function del($id)

@@ -74,12 +74,12 @@
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
-						<?php $t = $Total->find(5)['total'];
+						<?php $t = $Total->find(1)['total'];
 						echo $t;
 						?></span>
 				</div>
 			</div>
-			<div class="di"
+			<div class="di"4
 				style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
 				<!--正中央-->
 				<table width="100%">
@@ -94,7 +94,7 @@
 					</tbody>
 				</table>
 				<?php
-					
+
 					$do = $_GET['do'] ?? 'title';
 					$file = "./backend/" . $do . ".php";
 					if(file_exists($file)) {
