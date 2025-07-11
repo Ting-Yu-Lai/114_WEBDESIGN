@@ -58,13 +58,13 @@
                     ?>
                         <a href="?do=<?= $do; ?>&p=<?= $i ?>" style="font-size:<?=$size;?>"><?= $i; ?></a>
                     <?php endfor; ?>
-                    <?php
-                    if ($now - 1 <= $page):
-                    ?>
-                        <a href="?do=<?= $do; ?>&p=<?= $now + 1; ?>"> ></a>
-                    <?php
-                    endif;
-                    ?>
+            <?php
+            if ($now+1 <= $page):
+            ?>
+                <a href="?do=<?=$do; ?>&p=<?=$now+1; ?>"> > </a>
+            <?php
+            endif;
+            ?>
         </div>
 
         <table style="margin-top:40px; width:70%;">
