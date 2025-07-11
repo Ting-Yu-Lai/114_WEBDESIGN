@@ -10,9 +10,14 @@
                     <td width="10%">更換圖片</td>
                 </tr>
                 <?php
+                //count(${ucfirst($do)}->all());
+                // 算出image裡面有幾筆資料
                 $all = count(${ucfirst($do)}->all());
+                // 要顯示的頁數
                 $div = 3;
+                // 往上取整數 ex:4.5 => 5 
                 $page = ceil($all / $div);
+                // 定義現在頁數在哪裡
                 $now = $_GET['p'] ?? 1;
                 // 用all拿出所有的資料
                 $start = ($now - 1) * $div;
