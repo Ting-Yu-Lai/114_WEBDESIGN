@@ -19,7 +19,7 @@ function to($url)
 
 class DB
 {
-    private $dsn = "mysql:host=localhost;dbname=db04;charset=utd8";
+    private $dsn = "mysql:host=localhost;dbname=db04;charset=utf8";
     private $table;
     private $pdo;
 
@@ -62,7 +62,7 @@ class DB
         }
         return $this->q($sql);
     }
-    
+
     function count(...$arg)
     {
         $sql = "SELECT COUNT(*) FROM $this->table";
