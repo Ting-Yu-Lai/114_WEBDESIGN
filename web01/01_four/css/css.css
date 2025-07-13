@@ -75,6 +75,8 @@ body
 	line-height:30px;
 	padding:2px 10px 2px 10px;
 	margin:7px 1px 7px 1px;
+	/* 記得給高度 */
+	height: 30px;
 }
 .mainmu:hover
 {
@@ -89,8 +91,6 @@ body
 	background-size:100% 100%;
 	line-height:30px;
 	padding:2px 10px 2px 10px;
-	/* margin:7px 1px 7px 1px; */
-	z-index: 100;
 }
 .mainmu2:hover
 {
@@ -98,7 +98,7 @@ body
 	background-size:cover;
 }
 
-/* mw */
+/* 自行輸入mw */
 .mw {
 	position:relative;
 	top: -10px;

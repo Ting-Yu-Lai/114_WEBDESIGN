@@ -29,7 +29,8 @@
         var now = 0;
         if (lin.length > 1) {
             setInterval("ww()", 3000);
-            // now = 1;
+            
+            // now = 1; <=這行記得註解 因為它的存在讓邏輯不通順
         }
 
         function ww() {
@@ -39,6 +40,7 @@
             if (now >= lin.length)
                 now = 0;
         }
+        // 記得呼叫函式 ww()
         ww();
     </script>
 
@@ -55,18 +57,14 @@
             </div>
         </span>
         <?php
-        $all = $News->count(['sh'=>1]);
-        $div = 5;
-        $page = ceil($all / $div);
-        $now = $_GET['p']??1;
-        $start = ($now - 1)* $div;
-        $news = $News->all(['sh' => 1], " limit $start,$div");
+        $news = $News->all(['sh' => 1], " limit 5");
         ?>
         <ul class="ssaa" style="list-style-type:decimal;">
             <?php foreach ($news as $n): ?>
                 <li>
                     <?= mb_substr($n['text'], 0, 25); ?>
                     <!-- 如果要使用這種寫法，就直接包起來不可以換行 -->
+                     <!-- 記得輸入class=all  display:none -->
                     <span class="all" style="display:none;"><?= $n['text'] ?></span>
                 </li>
             <?php endforeach; ?>

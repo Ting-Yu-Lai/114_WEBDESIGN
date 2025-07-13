@@ -30,16 +30,21 @@
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<!-- 我要把主選單拿出來 所以是main_id=>0 -->
 					<?php $mains = $Menu->all(['main_id' => 0]);
 					foreach ($mains as $main) {
+						// 記得加上主選單的class mainmu
 						echo "<div class='mainmu'>";
 						echo "<a href='{$main['href']}'>";
 						echo $main['text'];
 						echo "</a>";
+						// 之後要把次選單拿出來 要去判斷main_id 跟 id 一樣的東西 還要判斷有沒有才顯示 
 						if ($Menu->all(['main_id' => $main['id']]) > 0) {
 							$subs = $Menu->all(['main_id' => $main['id']]);
+							// 記得自己弄出css:mw display:none
 							echo "<div class='mw'>";
 							foreach ($subs as $sub) {
+								// 然後再套上屬於次選單的css
 								echo "<div class='mainmu2'>";
 								echo "<a href='{$sub['href']}'>";
 								echo $sub['text'];
@@ -94,9 +99,14 @@
 					<div class="cent">
 						<?php
 						$images = $Image->all(['sh' => 1]);
+						// 需要把每一張圖片加上一個獨特的 id 名稱，像是：
+						// <div class="cent im" id="ssaa0">
+						// <div class="cent im" id="ssaa1">
+						// <div class="cent im" id="ssaa2">
 						foreach ($images as $key => $image):
 						?>
-							<div class="cent im" id="ssaa<?= $key; ?>">
+						<!-- 為什麼需要im 因為下面im會把其他內容hide起來 -->
+							<div class="cent im" id="ssaa<?= $key;?>">
 								<img src="./images/<?= $image['img']; ?>" style="width:150px;height:103px;border:3px solid orange;margin:2px;" alt="">
 							</div>
 						<?php endforeach; ?>

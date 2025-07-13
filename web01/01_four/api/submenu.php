@@ -1,6 +1,6 @@
 <?php include_once "./db.php";
 $main_id = $_POST['main_id'];
-var_dump($_POST);
+// var_dump($_POST);
 if(isset($_POST['id'])) {
     foreach($_POST['id'] as $key => $id) {
         if(isset($_POST['del']) && in_array($id,$_POST['del'])) {
