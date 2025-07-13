@@ -22,15 +22,14 @@
     ?>
     <ol start="<?= $start + 1; ?>">
         <?php
-        foreach ($news as $n) {
-            echo  "<li class='sswww'>";
-            echo mb_substr($n['text'],0,25);
-            echo "<span class='all' style='display:none'>";
-            echo $n['text'];
-            echo "</span>";
-            echo  "</li>";
-        }
-        ?>
+        foreach ($news as $n):?>
+            <li class='sswww'>
+             <?php mb_substr($n['text'],0,25);?>
+            <span class='all' style='display:none'>
+            <?= $n['text'];?>
+             </span>
+             </li>
+        <?php endforeach;?>
     </ol>
     <div style="text-align:center;">
         <?php

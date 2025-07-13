@@ -31,8 +31,8 @@
         </tbody>
     </table>
     <div class="cent">
-        <input type="hidden" name="main_id" value="<? $_GET['id']; ?>">
-        <input type="hidden" name="table" value="<? $_GET['table']; ?>">
+        <input type="hidden" name="main_id" value="<?= $_GET['id']; ?>">
+        <input type="hidden" name="table" value="<?= $_GET['table']; ?>">
         <input type="submit" value="修改確定">
         <input type="reset" value="重置">
         <input type="button" value="更多次選單" onclick="more()">

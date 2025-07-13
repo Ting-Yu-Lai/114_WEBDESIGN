@@ -23,7 +23,7 @@
         <?php
         $mvims = $Mvim->all(['sh' => 1]);
         foreach ($mvims as $mvim): ?>
-            lin.push('./images/<?=$mvim['img']?>');
+            lin.push('./images/<?= $mvim['img'] ?>');
         <?php endforeach; ?>
 
         var now = 0;
@@ -45,8 +45,31 @@
     <div
         style="width:95%; padding:2px; height:190px; margin-top:10px; padding:5px 10px 5px 10px; border:#0C3 dashed 3px; position:relative;">
         <span class="t botli">最新消息區
+            <div style="float: right;" class="left">
+                <?php
+                if ($News->count(['sh' => 1]) > 5) { ?>
+                    <a href="index.php?do=news">
+                        More...
+                    </a>
+                <?php }; ?>
+            </div>
         </span>
+        <?php
+        $all = $News->count(['sh'=>1]);
+        $div = 5;
+        $page = ceil($all / $div);
+        $now = $_GET['p']??1;
+        $start = ($now - 1)* $div;
+        $news = $News->all(['sh' => 1], " limit $start,$div");
+        ?>
         <ul class="ssaa" style="list-style-type:decimal;">
+            <?php foreach ($news as $n): ?>
+                <li>
+                    <?= mb_substr($n['text'], 0, 25); ?>
+                    <!-- 如果要使用這種寫法，就直接包起來不可以換行 -->
+                    <span class="all" style="display:none;"><?= $n['text'] ?></span>
+                </li>
+            <?php endforeach; ?>
         </ul>
         <div id="altt"
             style="position: absolute; width: 350px; min-height: 100px; background-color: rgb(255, 255, 204); top: 50px; left: 130px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">

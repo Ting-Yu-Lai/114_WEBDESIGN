@@ -89,13 +89,24 @@ body
 	background-size:100% 100%;
 	line-height:30px;
 	padding:2px 10px 2px 10px;
-	margin:7px 1px 7px 1px;
+	/* margin:7px 1px 7px 1px; */
+	z-index: 100;
 }
 .mainmu2:hover
 {
 	background:url(../icon/menu4.fw.png) center no-repeat;
 	background-size:cover;
 }
+
+/* mw */
+.mw {
+	position:relative;
+	top: -10px;
+	left: 100px;
+	z-index: 100;
+	display: none;
+}
+
 #lf
 {
 	height:540px;
