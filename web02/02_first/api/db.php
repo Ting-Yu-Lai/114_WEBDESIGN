@@ -80,10 +80,29 @@ class DB
         }
         return $this->pdo->query($sql)->fetchColumn();
     }
+    // 新增sum function 只增加$col變數
+    function sum($col,...$arg)
+    {
+        $sql = "SELECT SUM($col) FROM $this->table";
+        if (isset($arg[0])) {
+            if (is_array($arg[0])) {
+                $tmp = $this->a2s($arg[0]);
+                $sql .= " WHERE " . join(" AND ", $tmp);
+            } else {
+                $sql .= $arg[0];
+            }
+
+            if (isset($arg[1])) {
+                $sql .= $arg[1];
+            }
+        }
+        return $this->pdo->query($sql)->fetchColumn();
+    }
+
 
     function find($id)
     {
-        $sql = "SELECT * FROM $this->table";
+        $sql = "SELECT * FROM $this->table ";
         if (is_array($id)) {
             $tmp = $this->a2s($id);
             $sql .= " WHERE " . join(" AND ", $tmp);
