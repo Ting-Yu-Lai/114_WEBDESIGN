@@ -9,12 +9,12 @@
             </tr>
             <tr>
                 <td>Step2:登入密碼</td>
-                <td><input type="text" name="pw" id="pw"></td>
+                <td><input type="password" name="pw" id="pw"></td>
             </tr>
             <tr>
                 <td>Step3:再次確認密碼</td>
                 <td>
-                    <input type="text" name="pw2" id="pw2">
+                    <input type="password" name="pw2" id="pw2">
                 </td>
             </tr>
             <tr>
@@ -59,7 +59,7 @@
                     alert("帳號重複");
                 }else{
                     // 帳號沒有重複所以要去建立資料，所以這邊用POST
-                    $.post("./api/reg.php".data,(res)=>{
+                    $.post("./api/reg.php",data,(res)=>{
                         if(parseInt(res)) {
                             alert("註冊成功，歡迎加入");
                             location.href="?do=login";
