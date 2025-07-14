@@ -142,3 +142,10 @@ $Admin = new DB('admin');
 $Bottom = new DB('bottom');
 $Total = new DB('total');
 $News = new DB('news');
+
+if(!isset($_SESSION['view'])) {
+    $t=$Total->find(1);
+    $t['total']++;
+    $Total->save($t);
+    $_SESSION['view'] = 1;
+}

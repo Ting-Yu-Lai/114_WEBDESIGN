@@ -22,11 +22,12 @@ include_once "./api/db.php"
             <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
         </div>
     </div>
-    <iframe style="display:none;" name="back" id="back"></iframe>
     <div id="main">
-        <a title="" href="?">
-            <div class="ti" style="background:url('use/'); background-size:cover;"></div>
-            <!--標題-->
+        <a title="<?= $Title->find(['sh' => 1])['text']; ?>" href="index.php">
+            <div class="ti" style="background:url('./images/<?= $Title->find(['sh' => 1])['img']; ?>'); background-size:cover;"></div><!--標題-->
+        </a>
+
+        <!--標題-->
         </a>
         <div id="ms">
             <div id="lf" style="float:left;">
@@ -91,39 +92,44 @@ include_once "./api/db.php"
                     </tbody>
                 </table>
                 <?php
-				// GET do 以及 include backend檔案
-					$do = $_GET['do']??'title';
-					$file = "./backend/".$do.".php";
-					if(file_exists($file)) {
-						include_once $file;
-					} else {
-						include_once "./backend/title.php";
-					}
-				?>
+                // GET do 以及 include backend檔案
+                $do = $_GET['do'] ?? 'title';
+                $file = "./backend/" . $do . ".php";
+                if (file_exists($file)) {
+                    include_once $file;
+                } else {
+                    include_once "./backend/title.php";
+                }
+                ?>
             </div>
             <div id="alt"
                 style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
             </div>
             <script>
-            $(".sswww").hover(
-                function() {
-                    $("#alt").html("" + $(this).children(".all").html() + "").css({
-                        "top": $(this).offset().top - 50
-                    })
-                    $("#alt").show()
-                }
-            )
-            $(".sswww").mouseout(
-                function() {
-                    $("#alt").hide()
-                }
-            )
+                $(".sswww").hover(
+                    function() {
+                        $("#alt").html("" + $(this).children(".all").html() + "").css({
+                            "top": $(this).offset().top - 50
+                        })
+                        $("#alt").show()
+                    }
+                )
+                $(".sswww").mouseout(
+                    function() {
+                        $("#alt").hide()
+                    }
+                )
             </script>
         </div>
         <div style="clear:both;"></div>
         <div
             style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-            <span class="t" style="line-height:123px;"></span>
+            <span class="t" style="line-height:123px;">
+                <?php
+                $row = $Bottom->find(1);
+                echo $row['bottom'];
+                ?>
+            </span>
         </div>
     </div>
 
