@@ -129,7 +129,8 @@ class DB
 }
 
 $User = new DB('user');
-$User->save(['acc' => 'admin', 'pw' => '1234', 'email' => 'admin@labor.gov.tw']);
-$User->save(['acc' => 'test', 'pw' => '5678', 'email' => 'test@labor.gov.tw']);
-$User->save(['acc' => 'mem01', 'pw' => 'mem01', 'email' => 'mem01@labor.gov.tw']);
-$User->save(['acc' => 'mem02', 'pw' => 'mem02', 'email' => 'mem02@labor.gov.tw']);
+
+// $User->save(['acc' => 'admin', 'pw' => '1234', 'email' => 'admin@labor.gov.tw']);
+// $User->save(['acc' => 'test', 'pw' => '5678', 'email' => 'test@labor.gov.tw']);
+// $User->save(['acc' => 'mem01', 'pw' => 'mem01', 'email' => 'mem01@labor.gov.tw']);
+// $User->save(['acc' => 'mem02', 'pw' => 'mem02', 'email' => 'mem02@labor.gov.tw']);
