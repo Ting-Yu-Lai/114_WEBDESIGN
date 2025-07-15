@@ -15,13 +15,40 @@
     <div id="Post"></div>
 </fieldset>
 <script>
+     getList(1);
+
     $(".type-link").on("click",function() {
         let type = $(this).text();
         $("#NavType").text(type);
         let typeId = $(this).data("type");
-        $.get("./api/get_type_list.php",{type:typeId},function(list){
-            $("#Post").html("");
-            $("#TypeList").html(list)
-        })
+        getList(typeId);
+
     })
+
+    function getPost(id) {
+        $.get("./api/get_post.php",{id},function(post) {
+            // 先把title清掉
+            $("#TypeList").html("");
+            $("#Post").html(post);
+        })
+    }
+
+    $(".post-item").on("click",function(){
+        let postId=$(this).data("post");
+        getPost(postId);
+    })
+
+    // getList 會有時間續的問題，如果把post在前面先執行，就會有先呈現在綁定所以可能會有無法顯示的問題
+    function getList(type) {
+             $.get("./api/get_type_list.php",{type},function(list){
+            $("#Post").html("");
+            $("#TypeList").html(list);
+
+            $(".post-item").on("click",function(){
+                let postId=$(this).data("post");
+                
+                getPost(postId);
+            })
+        })
+    }
 </script>
