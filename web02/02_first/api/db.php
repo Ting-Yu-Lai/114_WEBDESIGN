@@ -19,7 +19,7 @@ function to($url)
 
 class DB
 {
-    private $dsn = "mysql:host=localhost;dbname=db01;charset=utf8";
+    private $dsn = "mysql:host=localhost;dbname=db18;charset=utf8";
     private $table;
     private $pdo;
 
@@ -142,6 +142,8 @@ class DB
 // 先建立users資料表並測試資料庫連線，新增使用者
 $User = new DB('users');
 $Visit= new DB('visit');
+$News= new DB('news');
+$Que= new DB('que');
 // $User->save(['acc'=>'test','pw'=>'5678','email'=>'test@labor.gov.tw']);
 // $User->save(['acc'=>'mem01','pw'=>'mem01','email'=>'mem01@labor.gov.tw']);
 // $User->save(['acc'=>'mem02','pw'=>'mem02','email'=>'mem02@labor.gov.tw']);
