@@ -19,10 +19,11 @@
     foreach($rows as $idx => $row):
     ?>
     <tr>
-        <td><?=$row['title'];?></td>
+        <!-- 抓取title的下一層來去做toggle next跟after是操作，所以我們需要的next -->
+        <td class="title"><?=$row['title'];?></td>
         <td>
-        <div class="short"><?=mb_substr($row['text'], 0, 30);?>...</div>
-        <div class="all"></div>
+            <div class="short"><?=mb_substr($row['text'], 0, 30);?>...</div>
+            <div class="all" style="display: none;"><?=nl2br($row['text']);?></div>
         </td>
         <td>
             <!-- 按讚功能 -->
@@ -52,3 +53,11 @@ if($now+1<=$pages):
 <a href="?do=news&p=<?=$now+1;?>" style="font-size: 18px;"> > </a>
 <?php endif;?>
 </div>
+
+<script>
+
+    $(".title").on("click", function() {
+        $(this).next().find(".short,.all").toggle();
+        // $(this).next().find(".all").toggle();
+    })
+</script>

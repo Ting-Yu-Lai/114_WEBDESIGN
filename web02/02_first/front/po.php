@@ -6,6 +6,7 @@
 <fieldset style="width:120px;display:inline-block;vertical-align:top;" >
     <legend>分類網址</legend>
     <!-- 因為要用分類網址去更動上面Nav的文字內容，所以我要給他一個class(type-link)抓取我的text去改變上面的文字 -->
+    <!-- 我要透過給予data-type來跟資料庫說我要抓取這個type -->
     <div><a class="type-link" data-type='1'>健康新知</a></div>
     <div><a class="type-link" data-type='2'>菸害防治</a></div>
     <div><a class="type-link" data-type='3'>癌症防治</a></div>
