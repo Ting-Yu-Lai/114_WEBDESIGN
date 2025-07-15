@@ -70,8 +70,8 @@
                             }
                         ?>
                     </span>
-
-                    <div class="">
+                    <!-- 設定一個CSS -->
+                    <div class="content">
                         <?php 
 							$do = $_GET['do'] ?? 'main';
 							$file = "./front/" .$do .".php";
