@@ -7,7 +7,9 @@
     <tr class="ct">
         <td style="width:20%;">標題</td>
         <td style="width:60%;">內容</td>
-        <td></td>
+        <td>
+
+        </td>
     </tr>
         <?php
     $total = $News->count();
@@ -27,6 +29,12 @@
         </td>
         <td>
             <!-- 按讚功能 -->
+            <?php
+                if(isset($_SESSION['login'])):
+                $chk=$Log->count(['news'=>$row['id'],'user'=>$_SESSION['login']])?>
+                <!-- 我要告訴他是哪個id的文章 -->
+            <a href="#" onclick="good(<?=$row['id'];?>)"><?=($chk==0)?"讚":"收回讚"?></a>
+            <?php endif;?>
         </td>
     </tr>
         <?php
@@ -60,4 +68,10 @@ if($now+1<=$pages):
         $(this).next().find(".short,.all").toggle();
         // $(this).next().find(".all").toggle();
     })
+
+    function good(news) {
+        $.post("./api/good.php",{news},function(){
+            location.reload();
+        })
+    }
 </script>
