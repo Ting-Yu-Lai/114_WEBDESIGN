@@ -129,8 +129,23 @@ class DB
 }
 
 $User = new DB('user');
+$Visit = new DB('visit');
 
 // $User->save(['acc' => 'admin', 'pw' => '1234', 'email' => 'admin@labor.gov.tw']);
 // $User->save(['acc' => 'test', 'pw' => '5678', 'email' => 'test@labor.gov.tw']);
 // $User->save(['acc' => 'mem01', 'pw' => 'mem01', 'email' => 'mem01@labor.gov.tw']);
 // $User->save(['acc' => 'mem02', 'pw' => 'mem02', 'email' => 'mem02@labor.gov.tw']);
+// 我要紀錄瀏覽人數，所以我先檢查有沒有她，因為功能要分今日瀏覽跟總瀏覽，所以我要順便把今日資料存進去
+if(!isset($_SESSION['visit'])) {
+    // 有無存在這筆資料
+    $v = $Visit->find(['date'=>date("Y-m-d")]);
+    if(empty($v)) {
+        $Visit->save(['date'=>date("Y-m-d"),'visit'=>1]);
+    }else{
+        // ++完之後
+        $v['visit']++;
+        // 要存進去
+        $v = $Visit->save($v);
+    }
+    $_SESSION['visit']=1;
+}
