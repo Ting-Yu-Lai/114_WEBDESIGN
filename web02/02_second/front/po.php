@@ -19,6 +19,8 @@
 
 
 <script>
+    getList(1);
+
     $('.type-link').on('click', function(){
         let type = $(this).text();
         $('#NavType').text(type);
@@ -28,7 +30,26 @@
         getList(typeId)
     })
 
+    function getPost(id) {
+        $("./api/get_post.php",{id},function(post){
+            $("TypeList").html("");
+            $('#Post').html(post);
+        })
+    }
+
+    $('.post-item').on('click',function(){
+        let postId = $(this).data('post');
+        getPost(postId);
+    })
+
     function getList(type) {
-        $.get("")
+        $.get("./api/get_type_list.php",{type},function(list) {
+            $('#Post').html("");
+            $("#TypeList").html(list);
+            $('.post-item').on('click',function(){
+                let postId = $(this).data("post");
+                getPost(postId);
+            })
+        })
     }
 </script>
