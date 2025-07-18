@@ -143,6 +143,7 @@
     $('.tab').on('click', function(){
         $(".tab").removeClass('active');
         $(this).addClass('active');
+       //attr()去抓id然後把id'tab'換成'post', id=tab1 => id=post1
         let post  = $(this).attr('id').replace('tab','post');
         $('.post').removeClass('active');
         $("#"+post).addClass('active')
