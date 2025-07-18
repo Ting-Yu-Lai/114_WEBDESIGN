@@ -42,7 +42,7 @@
                 <div >
 					<marquee behavior="" direction="" style="width:78%;">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地!詳見最新文章
                     </marquee>
-                    <span style="width:20%;display:inline-block">
+                    <span style="width:15%;display:inline-block">
                         <!-- 內層還有多一層判斷管理員，因為管理員可以管理 -->
                         <?php
                         if(isset($_SESSION['login'])) {
