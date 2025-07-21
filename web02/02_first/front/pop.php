@@ -53,7 +53,7 @@
             <?php
             if(isset($_SESSION['login'])):
             $chk=$Log->count(['news'=>$row['id'],'user'=>$_SESSION['login']])?>
-            <a href="#" onclick="good()">
+            <a href="#" onclick="good(<?=$row['id'];?>)">
                 <?=($chk==0)?"-讚":"-收回讚"?>
             </a>
             <?php endif;?>    

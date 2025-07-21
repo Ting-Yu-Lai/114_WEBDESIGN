@@ -31,20 +31,6 @@
     display: block;
 }
 </style>
-<div class="tabs">
-    <div class="tab active" id="tab1">健康新知 </div>
-    <div class="tab" id="tab2">菸害防治</div>
-    <div class="tab" id="tab3">癌症防治</div>
-    <div class="tab" id="tab4">慢性病防治</div>
-</div>
-<div class="posts">
-    <div class="post active" id="post1">各文章內容</div>
-    <div class="post active" id="post2">各文章內容</div>
-    <div class="post active" id="post3">各文章內容</div>
-    <div class="post active" id="post3">各文章內容</div>
-</div>
-
-
 
 <div class="tabs">
     <div class="tab active" id="tab1">健康新知 </div>

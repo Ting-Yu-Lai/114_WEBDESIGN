@@ -1,5 +1,5 @@
 <?php
-include_once "db.php";
+include_once "./db.php";
 
 // $_POST['news']
 // $_SESSION['login']
@@ -14,5 +14,3 @@ if($chk) {
     $news['good']+=1;
 }
 $News->save($news);
-
-to("../front/news.php");
