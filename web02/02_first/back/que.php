@@ -2,8 +2,7 @@
     <legend>問卷調查</legend>
     <form action="./api/admin_que.php" method="post">
         <div style="display: flex;">
-            <div style="width: 50%;">問卷名稱</div>
-            <div>
+            <div style="width: 50%;">問卷名稱
                 <input style="width: 50%;" type="text" name="subject">
             </div>
         </div>

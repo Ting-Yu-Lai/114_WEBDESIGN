@@ -54,7 +54,7 @@
                                 if($_SESSION['login']=='admin') {   
                                     echo "歡迎" . $_SESSION['login'];
                                     echo "<br>";
-                                    echo "<button>管理</button>";
+                                    echo "<button onclick=\"location.href='./back.php'\">管理</button>";
                                     echo "|";
                                     echo "<button onclick=\"location.href='./api/logout.php'\">登出</button>";
                                 }else {
