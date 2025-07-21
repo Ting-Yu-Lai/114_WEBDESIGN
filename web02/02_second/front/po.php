@@ -38,7 +38,7 @@
     }
 
     $('.post-item').on('click',function(){
-        console.log('post-item ok');
+        // console.log('post-item ok');
         let postId = $(this).data('post');
         getPost(postId);
     })
