@@ -41,16 +41,17 @@
                     </marquee>
                     <span style="width:15%;display:inline-block">
                         <!-- 內層還有多一層判斷管理員，因為管理員可以管理 -->
+
                         <?php
                         if(isset($_SESSION['login'])) {
                             if($_SESSION['login']=='admin') {
                                 echo "歡迎" . $_SESSION['login'];
-                                echo "<button>管理</button>";
+                                echo "<button onclick=\"location.href='./back.php'\">管理</button>";
                                 echo "|";
                                 echo "<button>登出</button>";
                             }else{
                                 echo "歡迎" . $_SESSION['login'];
-                                echo "<button>登出</button>";
+                                echo "<button onclick=\"location.href='./index.php'\">登出</button>";
                             }
                         }else{
                             echo "<a href='?do=login'>會員登入</a>";
