@@ -1,5 +1,6 @@
 <?php
 $subject = $Que->find($_GET['id']);
+// 拿取對應標題的選項
 $options=$Que->all(['subject_id'=>$_GET['id']]);
 
 ?>
@@ -11,6 +12,7 @@ $options=$Que->all(['subject_id'=>$_GET['id']]);
     foreach($options as $key => $option):
     ?>
     <div>
+        <!-- 傳送標題的選項 -->
         <input type="radio" name="option" value="<?=$option['id'];?>">
         <span>
             <?=$option['text'];?>

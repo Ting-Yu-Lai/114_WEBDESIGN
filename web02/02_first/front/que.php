@@ -17,7 +17,7 @@
             <td><?=$row['text'];?></td>
             <td><?=$row['vote'];?></td>
             <td>
-                <a href="?do=result&id=<?$row['id'];?>">結果</a>
+                <a href="?do=result&id=<?=$row['id'];?>">結果</a>
             </td>
             <td>
                 <?php
