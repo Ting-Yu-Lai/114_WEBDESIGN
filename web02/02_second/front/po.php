@@ -31,13 +31,14 @@
     })
 
     function getPost(id) {
-        $("./api/get_post.php",{id},function(post){
-            $("TypeList").html("");
+        $.get("./api/get_post.php",{id},function(post){
+            $("#TypeList").html("");
             $('#Post').html(post);
         })
     }
 
     $('.post-item').on('click',function(){
+        console.log('post-item ok');
         let postId = $(this).data('post');
         getPost(postId);
     })

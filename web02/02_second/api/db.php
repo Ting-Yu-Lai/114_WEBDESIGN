@@ -18,7 +18,7 @@ function to($url)
 
 class DB
 {
-    private  $dsn = "mysql:host=localhost;dbname=db01;charset=utf8;";
+    private  $dsn = "mysql:host=localhost;dbname=db18;charset=utf8;";
     private  $pdo;
     private  $table;
 
