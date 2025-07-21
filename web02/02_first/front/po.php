@@ -28,7 +28,6 @@
         // 給標題賦予id，從get_type_list拿到資料表的同樣id的title
         let typeId = $(this).data("type");
         getList(typeId);
-
     })
 
     function getPost(id) {
