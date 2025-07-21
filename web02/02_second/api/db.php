@@ -128,7 +128,7 @@ class DB
     }
 }
 
-$User = new DB('user');
+$User = new DB('users');
 $Visit = new DB('visit');
 $News = new DB('news');
 $Que = new DB('que');

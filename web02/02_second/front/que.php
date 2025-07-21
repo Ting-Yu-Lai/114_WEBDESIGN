@@ -14,7 +14,7 @@
         ?>
         <tr>
             <td><?=$idx+1?></td>
-            <td>
+            <td width="50%;">
                 <?=$row['text'];?>
             </td>
             <td><?=$row['vote'];?></td>
