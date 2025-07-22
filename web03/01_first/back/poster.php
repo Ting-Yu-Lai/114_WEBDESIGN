@@ -17,7 +17,7 @@
             ?>
             <div style="display: flex; justify-content: space-between; align-items: center; background-color:white; margin-bottom:3px;" class="ct">
                 <div  style="width:24.5%;" ><img src="./image/<?=$poster['img'];?>" style="width: 60px;height:80px;"></div>
-                <div  style="width:24.5%;" ><input type="text" name="name" value="<?=$poster['name'];?>"></div>
+                <div  style="width:24.5%;" ><input type="text" name="name[]" value="<?=$poster['name'];?>"></div>
                 <div  style="width:24.5%;" >
                     <button type="button">往上</button>
                     <button type="button">往下</button>
@@ -32,6 +32,7 @@
                     </select>
                 </div>
             </div>
+            <input type="hidden" name="id[]" value="<?=$poster['id'];?>">
             <?php endforeach;?>
         </div>
         <div class="ct">
