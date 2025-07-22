@@ -62,11 +62,11 @@
             <form action="?" method="post">
                 <table style="width: 300px;margin:auto;">
                     <tr>
-                        <td>帳號</td>
+                        <td>帳號：</td>
                         <td><input type="text" name="acc" id="acc"></td>
                     </tr>
                     <tr>
-                        <td>密碼</td>
+                        <td>密碼：</td>
                         <td><input type="password" name="pw" id="pw"></td>
                     </tr>
                 </table>
