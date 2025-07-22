@@ -17,7 +17,7 @@
   </div>
          <div id="top2"> 
           <a href="index.php">首頁</a> 
-          <a href="order.php">線上訂票</a>
+          <a href="?do=order">線上訂票</a>
           <a href="#">會員系統</a>
           <a  href="back.php">管理系統</a>
         </div>
@@ -27,15 +27,15 @@
     </marquee>
   </div>
   <div id="mm">
-  <?php 
-  $do = $_GET['do'] ?? 'main';
-  $file = './front/' .$do . ".php";
-   if(file_exists($file)) {
-    include_once $file;
-  }else {
-    include_once './front/main.php';
-  }
-  ?>
+    <?php 
+    $do = $_GET['do'] ?? 'main';
+    $file = "./front/" . $do . ".php";
+     if(file_exists($file)) {
+      include $file;
+    }else {
+      include './front/main.php';
+    }
+    ?>
   </div>
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
