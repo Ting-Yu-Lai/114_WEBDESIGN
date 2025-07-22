@@ -2,7 +2,7 @@
 .lists {
   width: 200px;
   height: 240px;
-  background-color: rgba(0, 255, 0, 0.5);
+  /* background-color: rgba(0, 255, 0, 0.5); */
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -44,7 +44,7 @@
   text-align: center;
   margin: 0  auto;
   position: absolute;
-  
+  display: none;
 }
 
 .poster img{
@@ -78,6 +78,9 @@
         </div>
     </div>
 </div>
+<script>
+  $('.poster').eq(0).show();
+</script>
 <div class="half">
     <h1>院線片清單</h1>
     <div class="rb tab" style="width:95%;">
