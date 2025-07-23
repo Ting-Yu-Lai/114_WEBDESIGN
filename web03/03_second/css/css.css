@@ -1,5 +1,6 @@
 ﻿@charset "utf-8";
 /* CSS Document */
+* { box-sizing: border-box; }
 body
 {
 	background:url(../icon/b.png);
@@ -44,7 +45,7 @@ input:focus
 	width:1022px;
 	min-height:766px;
 	border:#000 1px solid;
-	margin:30px auto 10px auto;
+	margin:0 auto;
 }
 #top
 {
