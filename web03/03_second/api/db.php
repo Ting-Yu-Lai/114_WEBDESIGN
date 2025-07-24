@@ -80,11 +80,11 @@ class DB {
          if(isset($arg[1])) {
             $sql .= $arg[1];
          }
-         return $this->q($sql);
+         return $this->pdo->query($sql)->fetchColumn();
     }
 
     function max($col,...$arg) {
-        $sql = "SELECT MAX($col) FROM $this->table ";
+        $sql = "SELECT max($col) FROM $this->table ";
         if(isset($arg[0])) {
             if(is_array($arg[0])) {
                 $tmp = $this->a2s($arg[0]);
@@ -96,7 +96,7 @@ class DB {
          if(isset($arg[1])) {
             $sql .= $arg[1];
          }
-         return $this->q($sql);
+        return $this->pdo->query($sql)->fetchColumn();
     }
 
     function find($id) {
