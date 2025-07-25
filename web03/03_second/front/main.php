@@ -107,16 +107,32 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
 </div>
 <script>
   let rank = 0;
+  // eq選取第一個索引，選擇整個.poster然後秀出來
   $('.poster').eq(rank).show();
 
   let slider = setInterval(() => {
     animater();
   }, 2000);
 
+    // 如果我手移動到bts上就停止Interval繼續運行
+  $('.btns').hover(
+    function () {
+      clearInterval(slider);
+    },
+    function () {
+      slider = setInterval(()=>{
+        animater();
+      },2000)
+    }
+  ) 
+  
+
+  //為什麼要傳入參數r，等後面使用btn點選要顯示的預告片就可以傳入
   function animater(r) {
     let now = $('.poster:visible');
     if (r == undefined) {
       rank++;
+      //rank 大於 他所有筆數-1 rank歸0
       if (rank > $('.poster').length - 1) {
         rank = 0;
       }
@@ -141,6 +157,8 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
         break;
     }
   }
+
+
 </script>
 
 
