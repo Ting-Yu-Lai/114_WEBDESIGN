@@ -5,6 +5,10 @@
         margin: auto;
         box-shadow:0 3px #999;
     }
+    a {
+        text-decoration: none;
+        color: white;
+    }
 </style>
 <button>
     <a href="?do=add_movie">

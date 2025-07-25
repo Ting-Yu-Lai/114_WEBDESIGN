@@ -1,5 +1,7 @@
 <div>
-    <form action="./api/add_movie.php" method="post">
+    <h2 class="ct">新增電影</h2>
+    <hr>
+    <form action="./api/add_movie.php" method="post" enctype="multipart/form-data">
         <div>
             <div>影片資料</div>
             <div>
@@ -20,7 +22,7 @@
                     </tr>
                     <tr class="ct">
                         <td>片長：</td>
-                        <td><input type="text" name="lenght" id="lenght"></td>
+                        <td><input type="text" name="lengh" id="lengh"></td>
                     </tr>
                     <tr class="ct">
                         <td>上映日期：</td>
@@ -68,5 +70,6 @@
             <div>劇情簡介</div>
             <div><textarea name="intro" id="intro"></textarea></div>
         </div>
+    <div class="ct"><input type="submit" value="新增"><input type="reset" value="重置"></div>
     </form>
 </div>

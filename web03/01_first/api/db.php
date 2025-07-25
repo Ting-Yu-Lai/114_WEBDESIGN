@@ -147,6 +147,7 @@ class DB
 
 
 $Poster = new DB('posters');
+$Movie = new DB('movies');
 // if(!isset($_SESSION['visit'])) {
 //     // 有無存在這筆資料
 //     $v = $Visit->find(['date'=>date("Y-m-d")]);
