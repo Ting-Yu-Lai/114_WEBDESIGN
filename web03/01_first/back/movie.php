@@ -57,7 +57,10 @@
 <hr>
 <?php
     $movies = $Movie->all(" order by `rank`");
-    foreach($movies as $movie):
+    // 要做排序所以要給每個資料一個編號
+    foreach($movies as $idx => $movie):
+    $prev = ($idx - 1 >= 0) ? $movies[$idx - 1]['id'] : $movie['id'];
+    $next = ($idx + 1 < count($movies)) ? $movies[$idx + 1]['id'] : $movie['id'];
 ?>
 <div class="movie">
     <div>
@@ -72,8 +75,8 @@
         </div>
         <div>
             <button class="sh-btn" data-id="<?=$movie['id'];?>"><?=($movie['sh']==1)?'顯示':'隱藏';?></button>
-            <button class="sw-btn" >往上</button>
-            <button class="sw-btn" >往下</button>
+            <button class="sw-btn" onclick="sw(<?=$movie['id'];?>, <?=$prev;?>, 'Movie')">往上</button>
+            <button class="sw-btn" onclick="sw(<?=$movie['id'];?>, <?=$next;?>, 'Movie')">往下</button>
             <button>編輯電影</button>
             <button>刪除電影</button>
         </div>
@@ -81,3 +84,8 @@
     </div>
 </div>
 <?php endforeach;?>
+<script>
+    function sw(id, sw, table) {
+        $.post('./api/sw.php',{ table: table, id: id, sw: sw }, () => location.reload());
+    }
+</script>

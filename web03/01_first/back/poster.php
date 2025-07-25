@@ -23,8 +23,8 @@
                     <div style="width:24.5%;"><input type="text" name="name[]" value="<?= $poster['name']; ?>"></div>
                     <div style="width:24.5%;">
                         <!-- id不只要有我的還要我的上一筆下一筆 -->
-                        <button type="button" onclick="sw(<?= $poster['id']; ?>, <?= $prev; ?>)">往上</button>
-                        <button type="button" onclick="sw(<?= $poster['id']; ?>, <?= $next; ?>)">往下</button>
+                        <button type="button" onclick="sw(<?= $poster['id']; ?>, <?= $prev; ?>, 'Poster')">往上</button>
+                        <button type="button" onclick="sw(<?= $poster['id']; ?>, <?= $next; ?>, 'Poster')">往下</button>
                     </div>
                     <div style="width:24.5%;">
                         <input type="checkbox" name="sh[]" value="<?= $poster['id']; ?>" <?= ($poster['sh'] == 1) ? 'checked' : ''; ?>>顯示
@@ -67,10 +67,7 @@
 </div>
 <!-- 畫面建置完去設置資料表 -->
 <script>
-    function sw(id1, id2) {
-        $.post('./api/sw.php', {
-            id1,
-            id2
-        }, () => location.reload());
+    function sw(id, sw, table) {
+        $.post('./api/sw.php',{ table: table, id: id, sw: sw }, () => location.reload());
     }
 </script>
