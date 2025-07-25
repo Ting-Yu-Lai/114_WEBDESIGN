@@ -100,7 +100,7 @@ class DB {
     }
 
     function find($id) {
-        $sql = "SELECT FROM $this->table ";
+        $sql = "SELECT * FROM $this->table ";
         if(is_array($id)) {
                 $tmp = $this->a2s($id);
                 $sql .= " WHERE " . join(" AND ",$tmp);
