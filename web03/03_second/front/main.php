@@ -13,9 +13,10 @@
     text-align: center;
     font-size: 16px;
     margin: 0 auto;
-    /* display: none; */
-    /* position: absolute; */
+    display: none;
+    position: absolute;
     /* background-color: transparent; */
+    width:200px;
   }
 
   .poster img {
@@ -31,7 +32,7 @@
 
   .btns {
     width: 280px;
-    height: 100px;
+    height: 120px;
     margin: 0 auto;
     display: flex;
     overflow: hidden;
@@ -82,8 +83,8 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
     <div id="abgne-block-20111227">
       <div class="lists">
         <?php foreach ($rows as $idx => $row): ?>
-          <div class="poster">
-            <img src="./image/<?= $row['img']; ?>" alt="">
+          <div class="poster"  data-id="<?= $row['id']; ?>" data-ani="<?= $row['ani'];?>">
+            <img src="./image/<?= $row['img']; ?>">
             <div><?= $row['name']; ?></div>
           </div>
         <?php endforeach; ?>
@@ -93,8 +94,9 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
         <div class="left"></div>
         <div class="btns">
           <?php foreach ($rows as $idx => $row): ?>
-            <div class="poster-btn">
-              <img src="./image/<?= $row['img']; ?>" alt="">
+            <div class="poster-btn"  data-id="<?= $row['id']; ?>" data-ani="<?= $row['ani'];?>">
+              <img src="./image/<?= $row['img']; ?>">
+              <div><?= $row['name']; ?></div>
             </div>
           <?php endforeach; ?>
         </div>
@@ -103,7 +105,43 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
     </div>
   </div>
 </div>
+<script>
+  let rank = 0;
+  $('.poster').eq(rank).show();
 
+  let slider = setInterval(() => {
+    animater();
+  }, 2000);
+
+  function animater(r) {
+    let now = $('.poster:visible');
+    if (r == undefined) {
+      rank++;
+      if (rank > $('.poster').length - 1) {
+        rank = 0;
+      }
+    } else {
+      rank = r;
+    }
+
+    let next = $('.poster').eq(rank);
+    let ani = next.data('ani');
+    switch (ani) {
+      case 1:
+        $(now).fadeOut(1000);
+        $(next).fadeIn(1000);
+        break;
+      case 2:
+        $(now).hide(1000);
+        $(next).show(1000);
+        break;
+      case 3:
+        $(now).slideUp(1000);
+        $(next).slideDown(1000);
+        break;
+    }
+  }
+</script>
 
 
 <div class="half">
