@@ -136,6 +136,6 @@ class DB {
     }
 }
 
-$Poster = new DB('poster');
+$Poster = new DB('posters');
 
 ?>
