@@ -6,7 +6,11 @@
         box-shadow:0 3px #999;
     }
 </style>
-<button>新增電影</button>
+<button>
+    <a href="?do=add_movie">
+        新增電影
+    </a>
+</button>
 <hr>
 
 <div class="movie">
