@@ -8,7 +8,8 @@ if(!empty($_FILES['img']['tmp_name'])) {
             'img' => $_FILES['img']['name'],
             'sh' => 1,
             'rank' => $Poster->max('id')+1,
-            'ani' => rand(1,3),
+            'ani' => rand(1,3)
         ]);
 }
+
 to("../back.php?do=poster");
