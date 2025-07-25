@@ -80,7 +80,6 @@
     <h1>預告片介紹</h1>
     <div class="rb tab" style="width:95%;">
         <div id="abgne-block-20111227">
-
             <div class="lists">
                 <?php
             foreach($posters as $poster):?>
@@ -111,6 +110,7 @@
 <script>
 let rank = 0;
 $('.poster').eq(rank).show();
+
 let slider = setInterval(() => {
     // rank++;
     // if(rank > $('.poster').length-1) {
@@ -156,13 +156,13 @@ function animater(r) {
     // }
     let next = $(".poster").eq(rank);
     // 現在動畫的轉入轉出依據
-    let ani = $(now).data('ani');
+    let ani = next.data('ani');
     // 就功能而言這樣就可以了
     switch (ani) {
         case 1:
             // 淡入淡出
-            $(now).fadeIn(1000);
-            $(next).fadeOut(1000);
+            $(now).fadeOut(1000);
+            $(next).fadeIn(1000);
             break;
         case 2:
             縮放
@@ -179,7 +179,7 @@ function animater(r) {
 }
 // 被點了左還右，是要++往右邊還是--往左邊
 let p=0;
-$(".left,.right").on('click',function(){
+$(".left, .right").on('click',function(){
     let arrow = $(this).attr('class');
     // console.log('arrow', arrow);
     
