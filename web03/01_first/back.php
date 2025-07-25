@@ -29,7 +29,7 @@
                 ABC影城票價全面八折優惠1個月
             </marquee>
         </div>
-        <div id="mm">
+        <div id="mm" style="height: 500px;overflow:auto;">
             <!-- 題目只需要一組帳號所以直接寫判斷即可 -->
             <?php
               if(isset($_POST['acc'])) {

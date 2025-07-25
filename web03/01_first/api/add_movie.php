@@ -11,14 +11,16 @@ if(!empty($_FILES['trailer']['tmp_name'])) {
     $_POST['trailer'] = $_FILES['trailer']['name'];
 }
 // 處理年月份
+// 運用 "{}-{}-{}"的方式串接
 $_POST['ondate'] = "{$_POST['year']}-{$_POST['month']}-{$_POST['day']}";
-unset($_POST['year']);
-unset($_POST['month']);
-unset($_POST['day']);
+unset($_POST['year'],$_POST['month'],$_POST['day']);
+// unset($_POST['year']);
+// unset($_POST['month']);
+// unset($_POST['day']);
 
 $_POST['sh']=1;
 $_POST['rank'] = $Movie->max('rank')+1;
 
 $Movie->save($_POST);
 
-to("../back.php?do=movie.php");
+to("../back.php?do=movie");
