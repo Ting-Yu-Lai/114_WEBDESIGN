@@ -122,18 +122,41 @@ let slider = setInterval(() => {
     animater();
 }, 2000)
 
-function animater() {
+$('.btns').hover (
+    function () {
+        clearInterval(slider);
+    },
+    function () {
+        slider = setInterval(() => {
+            animater();
+        }, 2000)
+    }
+)
+
+$(".poster-btn").on('click',function() {
+    let idx = $(this).index();
+    animater(idx);
+})
+
+function animater(r) {
     // 選擇正在顯示的那個物件
     let now = $(".poster:visible");
     // rank已在外面宣告
-    rank++;
-    // 判斷rank是不是超過我總筆數
-    if (rank > $('.poster').length - 1) {
-        rank = 0;
+    if(r == undefined) {
+        rank++;
+        if(rank > $('.poster').length-1){
+            rank = 0;
+        }
+    }else {
+        rank = r;
     }
+    // 判斷rank是不是超過我總筆數
+    // if (rank > $('.poster').length - 1) {
+    //     rank = 0;
+    // }
     let next = $(".poster").eq(rank);
     // 現在動畫的轉入轉出依據
-    let ani = $(now).date('ani');
+    let ani = $(now).data('ani');
     // 就功能而言這樣就可以了
     switch (ani) {
         case 1:
@@ -156,8 +179,10 @@ function animater() {
 }
 // 被點了左還右，是要++往右邊還是--往左邊
 let p=0;
-$(".left, .right").on('click',function(){
+$(".left,.right").on('click',function(){
     let arrow = $(this).attr('class');
+    // console.log('arrow', arrow);
+    
     switch(arrow) {
         case 'left':
             if(p > 0) {
@@ -170,8 +195,8 @@ $(".left, .right").on('click',function(){
                 p++;
             }
         break;
-        $('.poster-btn').animate({right:p*80},500)
     }
+    $('.poster-btn').animate({right:p*80},500)
 })
 </script>
 <div class="half">
