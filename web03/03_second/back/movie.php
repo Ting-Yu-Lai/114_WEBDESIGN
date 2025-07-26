@@ -11,7 +11,7 @@
     .box3 {
         width: 75%;
         height:150px;
-        background-color: blue;
+        /* background-color: blue; */
         display: flex;
         flex-wrap: wrap;
         /* justify-content: start; */

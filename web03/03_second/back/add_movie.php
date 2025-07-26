@@ -63,11 +63,11 @@
                     </tr>
                     <tr>
                         <td>預告影片：</td>
-                        <td><input type="file" name="img" id=""></td>
+                        <td><input type="file" name="trailer" id=""></td>
                     </tr>
                     <tr>
                         <td>電影海報：</td>
-                        <td><input type="file" name="trailer" id=""></td>
+                        <td><input type="file" name="poster" id=""></td>
                     </tr>
                 </table>
             </div>
