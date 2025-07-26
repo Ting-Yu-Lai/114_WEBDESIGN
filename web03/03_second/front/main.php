@@ -107,6 +107,7 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
 </div>
 <script>
   let rank = 0;
+  let p = 0;
   // eq選取第一個索引，選擇整個.poster然後秀出來
   $('.poster').eq(rank).show();
 
@@ -124,7 +125,12 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
         animater();
       },2000)
     }
-  ) 
+  )
+
+  $('.poster-btn').on('click',function() {
+    let idx = $(this).index();
+    animater(idx);
+  })
   
 
   //為什麼要傳入參數r，等後面使用btn點選要顯示的預告片就可以傳入
@@ -158,6 +164,10 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
     }
   }
 
+  $('.left, .right').on('click',function () {
+    //
+    let arrow = $(this).attr('class');
+  })
 
 </script>
 
