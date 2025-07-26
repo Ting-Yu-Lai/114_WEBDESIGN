@@ -167,6 +167,20 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
   $('.left, .right').on('click',function () {
     //
     let arrow = $(this).attr('class');
+
+    switch(arrow) {
+      case 'left':
+        if(p > 0) {
+          p--;
+        }
+        break;
+      case 'right':
+        if(p < $('.poster-btn').length - 3) {
+          p++;
+        }
+        break;
+    }
+    $('.poster-btn').animate({right:p*80},500)
   })
 
 </script>
