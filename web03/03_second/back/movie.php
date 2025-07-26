@@ -25,11 +25,20 @@
     .col3 {
         width: 100%;
     }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
 </style>
 
 <div class="movie">
     <div class="btn-box" style="width: 100%;height:40px;margin-top:10px;margin-left:3px;">
-        <button type="button">新增電影</button>
+        <button type="button">
+            <a href="?do=add_movie">
+                新增電影
+            </a>    
+        </button>
     </div>
     <div class="content" style="width: 100%;">
         <div class="img" style="width: 15%;"></div>
