@@ -1,14 +1,11 @@
 <?php
 include_once "db.php";
+$table = ${$_POST['table']};
+$r1 = $table->find($_POST['id']);
+$r2 = $table->find($_POST['sw']);
 
-$row1 = $Poster->find($_POST['id1']);
-$row2 = $Poster->find($_POST['id2']);
+[$r1['rank'], $r2['rank']] = [$r2['rank'], $r1['rank']];
 
-if ($row1 && $row2) {
-    $tmp = $row1['rank'];
-    $row1['rank'] = $row2['rank'];
-    $row2['rank'] = $tmp;
-
-    $Poster->save($row1); // 有 id，一定會 UPDATE，不會 INSERT
-    $Poster->save($row2);
-}
+$table->save($r1);
+$table->save($r2);
+?>

@@ -79,7 +79,9 @@
                         <input type="text" name="name[]" value="<?= $row['name']; ?>">
                     </div>
                     <div style="width:13%;text-align:center">
-                        <button class="swBtn" onclick="sw(<?= $row['id']; ?>, <?= $prev; ?>)">往上</button><br><button class="swBtn" onclick="sw(<?= $row['id']; ?>, <?= $next; ?>)">往下</button>
+                        <button class="swBtn" onclick="sw(<?= $row['id']; ?>, <?= $prev; ?>, 'Poster')">往上</button>
+                        <br>
+                        <button class="swBtn" onclick="sw(<?= $row['id']; ?>, <?= $next; ?>, 'Poster')">往下</button>
                     </div>
                     <div style="width:28%;text-align:center">
                         <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>顯示
