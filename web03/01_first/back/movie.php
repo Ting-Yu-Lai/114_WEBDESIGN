@@ -66,7 +66,7 @@
     <div>
         <img src="./image/<?=$movie['poster'];?>" style="width: 60px;height:80px;" alt="">
     </div>
-    <div>分級：<img src="./icon/03C0<?=$movie['level'];?>.png" style="width: 20px;"></div>
+    <div>分級：<img src="./icon/03C0<?= $movie['level'];?>.png" style="width: 20px;"></div>
     <div>
         <div>
             <div>片名：<?=$movie['name'];?></div>
@@ -75,8 +75,8 @@
         </div>
         <div>
             <button class="sh-btn" data-id="<?=$movie['id'];?>"><?=($movie['sh']==1)?'顯示':'隱藏';?></button>
-            <button class="sw-btn" onclick="sw(<?=$movie['id'];?>, <?=$prev;?>, 'Movie')">往上</button>
-            <button class="sw-btn" onclick="sw(<?=$movie['id'];?>, <?=$next;?>, 'Movie')">往下</button>
+            <button class="sw-btn" onclick="sw(<?= $movie['id'];?>, <?= $prev;?>, 'Movie')">往上</button>
+            <button class="sw-btn" onclick="sw(<?= $movie['id'];?>, <?= $next;?>, 'Movie')">往下</button>
             <button>編輯電影</button>
             <button>刪除電影</button>
         </div>
@@ -86,6 +86,6 @@
 <?php endforeach;?>
 <script>
     function sw(id, sw, table) {
-        $.post('./api/sw.php',{ table: table, id: id, sw: sw }, () => location.reload());
+        $.post('./api/sw.php',{table, id, sw },()=>location.reload());
     }
 </script>

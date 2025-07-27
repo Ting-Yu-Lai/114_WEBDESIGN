@@ -8,6 +8,18 @@
     position: relative;
 }
 
+.poster {
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    display: none;
+}
+
+.poster img {
+    width: 200px;
+    height: 220px;
+}
+
 .btns {
     width: 320px;
     height: 120px;
@@ -42,17 +54,6 @@
     border-right: 0px solid black;
 }
 
-.poster {
-    text-align: center;
-    margin: 0 auto;
-    position: absolute;
-    display: none;
-}
-
-.poster img {
-    width: 200px;
-    height: 220px;
-}
 
 .poster-btn {
     width: 80px;
@@ -62,13 +63,11 @@
     flex-shrink: 0;
     font-size: 12px;
     position: relative;
-
 }
 .poster-btn img{
     width: 70px;
     height: 90px;
     display: inline-block;
-
 }
 
 
@@ -82,7 +81,7 @@
         <div id="abgne-block-20111227">
             <div class="lists">
                 <?php
-            foreach($posters as $poster):?>
+                    foreach($posters as $poster):?>
                 <div class="poster" data-ani="<?=$poster['ani'];?>" data-id="<?=$poster['id'];?>">
                     <img src="./image/<?=$poster['img'];?>">
                     <div><?=$poster['name'];?></div>
