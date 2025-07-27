@@ -16,13 +16,31 @@
     <div id="top" style=" background:#999 center; background-size:cover; " title="替代文字">
       <h1>ABC影城</h1>
     </div>
-    <div id="top2"> <a href="03P01.htm">首頁</a> <a href="03P02.htm">線上訂票</a> <a href="#">會員系統</a> <a href="03P03.htm">管理系統</a> </div>
+    <div id="top2"> 
+      <a href="index.php">首頁</a> 
+      <a href="03P02.htm">線上訂票</a>
+      <a href="#">會員系統</a>
+      
+      <!-- if(isset($_SESSION['login'])) -->
+      <a href="back.php">管理系統</a>
+    </div>
     <div id="text"> <span class="ct">最新活動</span>
       <marquee direction="right">
         ABC影城票價全面八折優惠1個月
       </marquee>
     </div>
+    
     <div id="mm">
+    <?php
+      if(isset($_POST['acc'])) {
+        if($_POST['acc'] == 'admin' && $_POST['pw'] == '1234') {
+          $_SESSION['admin'] = $_POST['acc'];
+        }else{
+          echo "<div class='ct'>帳號或密碼錯誤</div>";
+        }
+      }
+    ?>
+    <?php if(isset($_SESSION['admin'])): ?>
       <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;">
         <a href="?do=title">網站標題管理</a>|
         <a href="?do=ad">動態文字管理</a>|
@@ -39,6 +57,21 @@
         include_once './back/main.php';
       }
       ?>
+      <?php else:?>
+      <form action="?" method="post">
+        <table class="ct" style="width: 20%;margin:auto;">
+          <tr>
+            <td>帳號:</td>
+            <td><input type="text" name="acc" id="acc"></td>
+          </tr>
+          <tr>
+            <td>密碼:</td>
+            <td><input type="text" name="pw" id="pw"></td>
+          </tr>
+        </table>
+        <div class="ct"><input type="submit" value="登入"><input type="reset" value="重置"></div>
+      </form>
+      <?php endif;?>
     </div>
     <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
   </div>
