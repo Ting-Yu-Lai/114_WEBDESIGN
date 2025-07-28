@@ -89,9 +89,13 @@
         $.post('./api/sw.php',{table, id, sw}, ()=> location.reload());
     }
 
-    $('.edit-btn').on('click',function(){
+    $('.del-btn').on('click',function(){
         let id = $(this).data('id');
-
+        if(confirm("確定刪除這部電影嗎?")) {
+            $.post('./api/del_movie.php',{id},()=>{
+                location.reload();
+            })
+        }
     })
 
     $('.sh-btn').on('click',function(){
