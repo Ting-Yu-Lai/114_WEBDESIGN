@@ -18,8 +18,8 @@ unset($_POST['year'],$_POST['month'],$_POST['day']);
 // unset($_POST['month']);
 // unset($_POST['day']);
 
-$_POST['sh']=1;
-$_POST['rank'] = $Movie->max('rank')+1;
+// $_POST['sh']=1; 不需要更動就不要出現
+// $_POST['rank'] = $Movie->max('rank')+1; 更新不需要改變排序
 
 $Movie->save($_POST);
 

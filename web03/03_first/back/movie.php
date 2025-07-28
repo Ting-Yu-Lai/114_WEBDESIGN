@@ -77,7 +77,7 @@
             <button class="sh-btn" data-id="<?=$movie['id'];?>"><?=($movie['sh']==1)?'顯示':'隱藏';?></button>
             <button class="sw-btn" onclick="sw(<?= $movie['id'];?>, <?= $prev;?>, 'Movie')">往上</button>
             <button class="sw-btn" onclick="sw(<?= $movie['id'];?>, <?= $next;?>, 'Movie')">往下</button>
-            <button>編輯電影</button>
+            <button onclick="location.href='?do=edit_movie&id=<?=$movie['id'];?>'">編輯電影</button>
             <button class="del-btn" data-id="<?=$movie['id'];?>">刪除電影</button>
         </div>
         <div>劇情介紹：<?=$movie['intro'];?></div>
