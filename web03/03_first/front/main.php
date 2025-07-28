@@ -198,14 +198,75 @@ $(".left, .right").on('click',function(){
     $('.poster-btn').animate({right:p*80},500)
 })
 </script>
+<style>
+    .movie-list {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        height: 320px;
+        align-content: space-evenly;
+        overflow: auto;
+    }
+    .movie {
+        width: 48%;
+        display: flex;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        border:1px solid #ccc;
+        min-height: 100px;
+        border-radius: 3px;
+        font-size: 12px;
+        padding: 3px;
+    }
+</style>
 <div class="half">
     <h1>院線片清單</h1>
     <div class="rb tab" style="width:95%;">
-        <table>
-            <tbody>
-                <tr> </tr>
-            </tbody>
-        </table>
-        <div class="ct"> </div>
+        <div class="movie-list">
+        <?php
+        //題目要求只有三天內上架的電影才能顯示出來，懶得改資料日期先顯示七天前都可以
+        $today = date("Y-m-d");
+        $ondate = date("Y-m-d", strtotime("-7 days",strtotime($today)));
+        $total = $Movie->count(['sh'=>1]," and ondate between '$ondate' and '$today'");
+        $div = 4;
+        $pages = ceil($total / $div);
+        $now = $_GET['p']??'1';
+        $start = ($now - 1)*$div;
+
+        $movies = $Movie->all(['sh'=>1]," and ondate between '$ondate' and '$today' order by `rank` limit $start,$div");
+        foreach($movies as $idx => $movie):
+        ?>
+            <div class="movie">
+                <div style="width:30%" onclick="location.href='?do=intro&id=<?=$movie['id'];?>'"><img src="./image/<?=$movie['poster'];?>" style="width:60px;height:70px;"></div>
+                <div style="width:68%">
+                    <div class="name" style="font-size: 14px;"><?=$movie['name'];?></div>
+                    <div>分級:
+                        <img src="./icon/03C0<?=$movie['level'];?>.png" style="width:20px;height:20px;" alt="">
+    
+                    </div>
+                    <div>上映日期:<?=$movie['ondate'];?></div>
+                </div>
+                <div>
+                    <button onclick="location.href='?do=intro&id=<?=$movie['id'];?>'">劇情介紹</button>
+                    <button onclick="location.href='?do=order&id=<?=$movie['id'];?>'">線上訂票</button>
+                </div>
+            </div>
+            <?php endforeach;?>
+        </div>
+            
+        <div class="ct">
+            <?php if($now-1 > 0):?>
+                <a href="?p=<?=$now -1;?>"> < </a>
+                <?php endif;?>
+            <?php
+            for($i=1;$i<=$pages;$i++):
+                $size=($i==$now)?'24px':'';?>
+            <a href="?p=<?=$i;?>" style="font-size: <?=$size;?>;"><?=$i;?></a>
+            <?php endfor;?>
+            <?php if($now+1 <= $pages):?>
+        
+                <a href="?p=<?=$now + 1;?>"> > </a>
+                <?php endif;?>
+        </div>
     </div>
 </div>

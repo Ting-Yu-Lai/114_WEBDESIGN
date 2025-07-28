@@ -2,6 +2,12 @@
 session_start();
 date_default_timezone_set("Asia/Taipei");
 
+$levelStr = [
+    '1'=>"普通級",
+    '2'=>"輔導級",
+    '3'=>"保護級",
+    '4'=>"限制級",
+];
 
 function dd($data)
 {
@@ -51,6 +57,7 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
+        // echo $sql;
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
