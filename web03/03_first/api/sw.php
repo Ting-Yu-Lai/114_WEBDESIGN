@@ -8,12 +8,8 @@ $sw = $_POST['sw'];
 $row1 = $table->find($id);
 $row2 = $table->find($sw);
 
-if ($row1 && $row2) {
-    $tmp_rank = $row1['rank'];
-    $row1['rank'] = $row2['rank'];
-    $row2['rank'] = $tmp_rank;
+[[$row1], [$row2]] = [[$row2], [$row1]];
+$table->save($row1);
+$table->save($row2);
 
-    $table->save($row1);
-    $table->save($row2);
-}
 ?>
