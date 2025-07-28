@@ -71,6 +71,7 @@
                     <div>上映時間:<?=$movie['ondate'];?></div>
                 </div>
                 <div class="col2" style="display: flex;justify-content: start;">
+                    <button class="sh-btn" data-id="<?=$movie['id'];?>"><?=($movie['sh']==1)?'顯示':'隱藏';?></button>
                     <button onclick="sw(<?=$movie['id'];?>, <?=$prev;?>, 'Movie')">往上</button>
                     <button onclick="sw(<?=$movie['id'];?>, <?=$next;?>, 'Movie')">往下</button>
                     <button>編輯電影</button>
@@ -87,4 +88,22 @@
     function sw(id, sw, table) {
         $.post('./api/sw.php',{table, id, sw}, ()=> location.reload());
     }
+
+    $('.sh-btn').on('click',function(){
+        // console.log('click ok');
+        
+        let id = $(this).data('id');
+        // console.log(id);
+        $.post("./api/sh.php",{id},()=>{
+            switch(id) {
+                case '顯示':
+                    $(this).text('隱藏');
+                    break
+                case '隱藏':
+                    $(this).text('顯示');
+                    break
+            }
+            location.reload();
+        })
+    })
 </script>
