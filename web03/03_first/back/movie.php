@@ -102,10 +102,10 @@
     })
 
     $('.del-btn').on('click',function() {
-        console.log('click ok');
+        // console.log('click ok');
         
         let id = $(this).data('id');
-        console.log('id:',id);
+        // console.log('id:',id);
         if(confirm("確定刪除這部電影嗎?")) {
             $.post("./api/del.php",{table:'Movie',id},()=>{
                 location.reload();
