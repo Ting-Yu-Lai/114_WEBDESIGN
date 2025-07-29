@@ -205,6 +205,11 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
     flex-wrap: wrap;
     border: 1px solid #ccc;
   }
+  
+  a{
+    color: white;
+    text-decoration: none;
+  }
 </style>
 <div class="half">
   <h1>院線片清單</h1>
@@ -234,6 +239,16 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
         </div>
       <?php endforeach; ?>
     </div>
-    <div class="ct">1 2 3</div>
+    <div class="ct">
+      <?php if($now - 1 > 0):?>
+        <a href="?p=<?=$now - 1;?>"> < </a>
+      <?php endif;?>
+      <?php for($i=1;$i<=$pages;$i++): $size=($now == $i)?'24px':'';?>
+      <a href="?p=<?= $i;?>" style="font-size: <?=$size;?>;"><?= $i;?></a>
+        <?php endfor;?>
+      <?php if($now + 1 <= $pages):?>
+        <a href="?p=<?=$now + 1;?>"> > </a>
+      <?php endif;?>
+    </div>
   </div>
 </div>
