@@ -236,7 +236,7 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
           </div>
           <div style="width:100%;display:flex;justify-content: space-evenly;">
             <button onclick="location.href='?do=intro&id=<?=$movie['id'];?>'">劇情介紹</button>
-            <button>線上訂票</button>
+            <button onclick="location.href='?do=order&id=<?=$movie['id'];?>'">線上訂票</button>
           </div>
         </div>
       <?php endforeach; ?>
