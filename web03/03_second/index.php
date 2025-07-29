@@ -17,8 +17,8 @@
     <h1>ABC影城</h1>
   </div>
   <div id="top2" class="ct"> 
-      <a href="03P01.htm">首頁</a> 
-      <a href="03P02.htm">線上訂票</a>
+      <a href="index.php">首頁</a> 
+      <a href="?do=order">線上訂票</a>
       <a href="#">會員系統</a>
       <a href="./back.php">管理系統</a>
      </div>

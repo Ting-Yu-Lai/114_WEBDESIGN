@@ -229,12 +229,14 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
         <div class="movie">
           <div style="width: 30%;"><img style="width: 100%;" src="./image/<?= $movie['poster']; ?>" alt=""></div>
           <div style="width: 68%; display:flex;flex-wrap:wrap">
-            <div>分級：<img src="./icon/03C0<?= $movie['level']; ?>.png" style="width: 20px;height20px;" alt="">
+            <div><?=$movie['name'];?></div>
+            <div>分級：<img src="./icon/03C0<?= $movie['level']; ?>.png" style="width: 16px;height16px;" alt="">
               <?= $levelStr[$movie['level']]; ?></div>
             <div>上映日期：<br><?= $movie['ondate']; ?></div>
           </div>
-          <div style="width:100%;display: flex;justify-content: space-evenly;">
-            <button>劇情介紹</button><button>線上訂票</button>
+          <div style="width:100%;display:flex;justify-content: space-evenly;">
+            <button onclick="location.href='?do=intro&id=<?=$movie['id'];?>'">劇情介紹</button>
+            <button>線上訂票</button>
           </div>
         </div>
       <?php endforeach; ?>
