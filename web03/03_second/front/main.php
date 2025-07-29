@@ -16,7 +16,7 @@
     display: none;
     position: absolute;
     /* background-color: transparent; */
-    width:200px;
+    width: 200px;
   }
 
   .poster img {
@@ -83,7 +83,7 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
     <div id="abgne-block-20111227">
       <div class="lists">
         <?php foreach ($rows as $idx => $row): ?>
-          <div class="poster"  data-id="<?= $row['id']; ?>" data-ani="<?= $row['ani'];?>">
+          <div class="poster" data-id="<?= $row['id']; ?>" data-ani="<?= $row['ani']; ?>">
             <img src="./image/<?= $row['img']; ?>">
             <div><?= $row['name']; ?></div>
           </div>
@@ -94,7 +94,7 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
         <div class="left"></div>
         <div class="btns">
           <?php foreach ($rows as $idx => $row): ?>
-            <div class="poster-btn"  data-id="<?= $row['id']; ?>" data-ani="<?= $row['ani'];?>">
+            <div class="poster-btn" data-id="<?= $row['id']; ?>" data-ani="<?= $row['ani']; ?>">
               <img src="./image/<?= $row['img']; ?>">
               <div><?= $row['name']; ?></div>
             </div>
@@ -115,23 +115,23 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
     animater();
   }, 2000);
 
-    // 如果我手移動到bts上就停止Interval繼續運行
+  // 如果我手移動到bts上就停止Interval繼續運行
   $('.btns').hover(
-    function () {
+    function() {
       clearInterval(slider);
     },
-    function () {
-      slider = setInterval(()=>{
+    function() {
+      slider = setInterval(() => {
         animater();
-      },2000)
+      }, 2000)
     }
   )
 
-  $('.poster-btn').on('click',function() {
+  $('.poster-btn').on('click', function() {
     let idx = $(this).index();
     animater(idx);
   })
-  
+
 
   //為什麼要傳入參數r，等後面使用btn點選要顯示的預告片就可以傳入
   function animater(r) {
@@ -164,25 +164,26 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
     }
   }
 
-  $('.left, .right').on('click',function () {
+  $('.left, .right').on('click', function() {
     //
     let arrow = $(this).attr('class');
 
-    switch(arrow) {
+    switch (arrow) {
       case 'left':
-        if(p > 0) {
+        if (p > 0) {
           p--;
         }
         break;
       case 'right':
-        if(p < $('.poster-btn').length - 3) {
+        if (p < $('.poster-btn').length - 3) {
           p++;
         }
         break;
     }
-    $('.poster-btn').animate({right:p*80},500)
+    $('.poster-btn').animate({
+      right: p * 80
+    }, 500)
   })
-
 </script>
 
 <style>
@@ -193,8 +194,9 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
     justify-content: space-evenly;
     align-content: space-evenly;
   }
+
   .movie {
-    width:48%;
+    width: 48%;
     min-height: 100px;
     padding: 3px;
     font-size: 12px;
@@ -208,11 +210,29 @@ $rows = $Poster->all(['sh' => 1], ' order by `rank` ');
   <h1>院線片清單</h1>
   <div class="rb tab" style="width:95%;">
     <div class="movie-list">
-
-      <div class="movie"></div>
-      <div class="movie"></div>
-      <div class="movie"></div>
-      <div class="movie"></div>
+      <?php
+      $today = date("Y-m-d");
+      $ondate = date("Y-m-d", strtotime("-3 days", strtotime($today)));
+      $total = $Movie->count(['sh' => 1], " and ondate between '$ondate' and '$today'");
+      $div = 4;
+      $pages = ceil($total / $div);
+      $now = $_GET['p'] ?? '1';
+      $start = ($now - 1) * $div;
+      $movies = $Movie->all(['sh' => 1], " and ondate between '$ondate' and '$today' order by `rank` limit $start,$div");
+      foreach ($movies as $movie):
+      ?>
+        <div class="movie">
+          <div style="width: 30%;"><img style="width: 100%;" src="./image/<?= $movie['poster']; ?>" alt=""></div>
+          <div style="width: 68%; display:flex;flex-wrap:wrap">
+            <div>分級：<img src="./icon/03C0<?= $movie['level']; ?>.png" style="width: 20px;height20px;" alt="">
+              <?= $levelStr[$movie['level']]; ?></div>
+            <div>上映日期：<br><?= $movie['ondate']; ?></div>
+          </div>
+          <div style="width:100%;display: flex;justify-content: space-evenly;">
+            <button>劇情介紹</button><button>線上訂票</button>
+          </div>
+        </div>
+      <?php endforeach; ?>
     </div>
     <div class="ct">1 2 3</div>
   </div>
