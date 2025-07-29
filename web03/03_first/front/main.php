@@ -232,7 +232,6 @@ $(".left, .right").on('click',function(){
         $pages = ceil($total / $div);
         $now = $_GET['p']??'1';
         $start = ($now - 1)*$div;
-
         $movies = $Movie->all(['sh'=>1]," and ondate between '$ondate' and '$today' order by `rank` limit $start,$div");
         foreach($movies as $idx => $movie):
         ?>
