@@ -20,28 +20,42 @@
     </div>
     <div class="col3" style="width: 100%;background-color:#ccc;">
         場次:
-        <div class="sessions"></div>
+        <select name="sessions" id="sessions"></select>
     </div>
 </div>
 
 <script>
     let url = new URLSearchParams(location.search);
     getMoives()
+    $("#movie").on('change',function() {
+        getDate($(this).val());
+    })
+    $('#date').on('change',function(){ 
+        getSession($("#movie").val(),$(this).val())
+    })
 
     function getMoives() {
         let id = 0;
         if (url.has('id')) {
             id = url.get('id');
         }
-        $.get("./api/get_movies.php", {
-            id
-        }, (movies) => {
+        $.get("./api/get_movies.php", {id}, (movies) => {
             $('#movie').html(movies);
+            getDate($('#movie').val());
         })
 
+    }
+    
+    function getDate(id) {
         $.get("./api/get_dates.php", {id}, (dates) => {
             $("#date").html(dates);
-            
+            getSession(id,$("#date").val());
+        })
+    }
+
+    function getSession(id,date){
+        $.get("./api/get_sessions.php",{id,date},(sessions)=>{
+            $("#sessions").html(sessions);
         })
     }
 </script>
