@@ -134,7 +134,7 @@ class DB
             $sql = "INSERT INTO $this->table ";
             $keys = "`" . join("`,`",array_keys($array)) . "`";
             $values = "'" . join("','",array_values($array)) . "'";
-            $sql .= "$keys VALUES $values";
+            $sql .= "($keys) VALUES ($values)";
         }
         return $this->pdo->exec($sql);
     }

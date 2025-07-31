@@ -15,6 +15,8 @@
         </tr>
         </table>
         <div class="cent">
+            <!-- 我要把table傳出去 -->
+            <input type="hidden" name="table" value="<?=$_GET['table'];?>">
             <button type="submit">新增</button><button type="reset">重置</button>
         </div>
 </form>
