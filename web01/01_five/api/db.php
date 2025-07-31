@@ -2,6 +2,13 @@
 session_start();
 date_default_timezone_set("Asia/Taipei");
 
+function dd($data)
+{
+    "<pre>";
+    print_r($data);
+    "</pre>";
+}
+
 function to($url)
 {
     header("Location:$url");
@@ -111,7 +118,7 @@ class DB
         }
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     function del($id)
     {
         $sql = "DELETE FROM $this->table ";
@@ -123,29 +130,29 @@ class DB
         }
         return $this->pdo->exec($sql);
     }
-    
 
-    function save($array) {
+
+    function save($array)
+    {
         if (isset($array['id'])) {
             $sql = "UPDATE $this->table SET ";
             $tmp = $this->a2s($array);
-            $sql .=join(", ", $tmp) . " WHERE `id` = '{$array['id']}'";
+            $sql .= join(", ", $tmp) . " WHERE `id` = '{$array['id']}'";
         } else {
             $sql = "INSERT INTO $this->table ";
-            $keys = "`" . join("`,`",array_keys($array)) . "`";
-            $values = "'" . join("','",array_values($array)) . "'";
+            $keys = "`" . join("`,`", array_keys($array)) . "`";
+            $values = "'" . join("','", array_values($array)) . "'";
             $sql .= "($keys) VALUES ($values)";
         }
         return $this->pdo->exec($sql);
     }
-
 }
-$Title = new DB ('title');
-$Ad = new DB ('Ad');
-$Mvim = new DB ('mvim');
-$Image = new DB ('image');
-$Footer = new DB ('footer');
-$News = new DB ('news');
-$Admin = new DB ('admin');
-$Menu = new DB ('menu');
-$Total = new DB ('total');
+$Title = new DB('title');
+$Ad = new DB('Ad');
+$Mvim = new DB('mvim');
+$Image = new DB('image');
+$Footer = new DB('footer');
+$News = new DB('news');
+$Admin = new DB('admin');
+$Menu = new DB('menu');
+$Total = new DB('total');
