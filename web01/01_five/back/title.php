@@ -11,7 +11,7 @@
                     <td></td>
                 </tr>
                 <?php
-                $rows = $Title->all();
+                $rows = ${ucfirst($do)}->all();
                 foreach($rows as $row):
                 ?>
                 <tr class="cent">
@@ -22,7 +22,7 @@
                         <input type="text" name="text[]" value="<?=$row['text'];?>" id="">
                     </td>
                     <td width="7%">
-                        <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" id="" <?=($row['sh']==1)?'selected':'';?>>
+                        <input type="radio" name="sh" value="<?=$row['id'];?>" id="" <?=($row['sh']==1)?'checked':'';?>>
                     </td>
                     <td width="7%">
                         <input type="checkbox" name="del[]" value="<?=$row['id'];?>" id="">
