@@ -2,7 +2,7 @@
     <h3>新增標題區圖片</h3>
 </div>
 <hr>
-<form action="./api/add_title.php" method="post" enctype="multipart/form-data">
+<form action="./api/insert.php" method="post" enctype="multipart/form-data">
 
     <table class="cent" style="width: 70%;margin:auto;">
         <tr>
