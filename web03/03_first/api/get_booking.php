@@ -51,6 +51,7 @@
     <?php for($i=0;$i<20;$i++):?>
     <div class="seat">
         <?=floor($i/5)+1;?>排<?=($i%5)+1;?>號</div>
+        <!-- 點選之後勾選要+1 取消之後勾選要-1 -->
         <input type="checkbox" name="seat" value="<?= $i;?>">
     </div>
     <?php endfor;?>
@@ -64,3 +65,23 @@
 </div>
 <button class="btn-prev">上一步</button>
 <button class="btn-order">訂購</button>
+
+<script>
+    let selectedSeats =[];
+    $(".seat input[type='checkbox']").on('change',function() {
+        
+        if($(this).prop("checked")) {
+            if(selectedSeats.length < 4) {
+                selectedSeats.push($(this).val());
+                $(this).parent().removeClass('null').addClass('booked');
+            }else{
+                alert('最多只能選擇四張票');
+                $(this).prop("checked",false);
+                $(this).parent().removeClass('booked').addClass('null');
+            }
+        }else{
+            selectedSeats.splice(selectedSeats,indexof($(this).val()),1);
+        }
+        $("#tickets").text(selectedSeats.length);
+    })
+</script>
