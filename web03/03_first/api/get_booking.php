@@ -1,3 +1,4 @@
+<?php include_once 'db.php';?>
 <style>
 .booking-box {
     width: 540px;
@@ -59,12 +60,12 @@
 <div class="info-box">
 </div>
 <div class="order-info">
-    <div>您選擇的電影是：</div>
-    <div>您選擇的時刻是：</div>
+    <div>您選擇的電影是：<?=$Movie->find($_GET['id'])['name'];?></div>
+    <div>您選擇的時刻是：<?=$_GET['date'];?> <?=$_GET['session'];?></div>
     <div>您已經勾選 <span id="tickets">0</span>張票，最多可以選四張。</div>
 </div>
 <button class="btn-prev">上一步</button>
-<button class="btn-order">訂購</button>
+<button class="btn-order" >訂購</button>
 
 <script>
     let selectedSeats =[];
@@ -83,5 +84,16 @@
             selectedSeats.splice(selectedSeats,indexof($(this).val()),1);
         }
         $("#tickets").text(selectedSeats.length);
+    })
+
+    $('.btn-order').on('click',function(){
+        $.post("./api/booking.php",{
+            movie:"<?=$Movie->find($_GET['id'])['name'];?>";
+            date="<?=$_GET['date'];?>";
+            session="<?=$_GET['session'];?>";
+            seats:selectedSeats
+        },(no)=>{
+            location.href = `?do=result&no=${no}`;
+        })
     })
 </script>
