@@ -1,4 +1,6 @@
-
+<?php
+$order->$Order->find(['no'=>$_GET['no']]);
+?>
 <table>
     <tr>
         <td colspan="2">感謝您的訂購，您的訂單編號是：<?=$_GET['no'];?></td>
