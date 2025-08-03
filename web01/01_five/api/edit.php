@@ -24,12 +24,12 @@ foreach($_POST['id'] as $key => $id) {
                 $row['href'] = $_POST['text'][$key];
                 $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
             break;
-            default:
             //如果row裡面有text
+            default:
                 if(isset($row['text'])) {
                     $row['text'] = $_POST['text'][$key];
                 }
-                $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
+                    $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))? 1:0;
                 break;
         }
         $db->save($row);
