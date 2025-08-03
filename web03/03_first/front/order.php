@@ -92,4 +92,10 @@
             $("#session").html(sessions);
         })
     }
+
+    $('.btn-submit').on('click',function() {
+        $.get("./api/get_booking.php",{
+            id:$('#movie').val(),
+        })
+    })
 </script>

@@ -29,6 +29,13 @@ function to($url)
     header("Location:$url");
 }
 
+function q($sql) {
+    $dsn = "mysql:host=localhost;dbname=web03;charset=utf8;";
+    $pdo = new PDO($dsn, 'root', '');
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
 
 class DB
 {
@@ -163,6 +170,7 @@ class DB
 
 $Poster = new DB('posters');
 $Movie = new DB('movies');
+$Order = new DB('orders');
 // if(!isset($_SESSION['visit'])) {
 //     // 有無存在這筆資料
 //     $v = $Visit->find(['date'=>date("Y-m-d")]);
