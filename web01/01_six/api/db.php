@@ -133,7 +133,7 @@ class DB
         }
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     function del($id)
     {
         $sql = "DELETE FROM $this->table ";
@@ -143,19 +143,20 @@ class DB
         } else {
             $sql .= " where `id` = '$id'";
         }
-            return $this->pdo->exec($sql);
+        return $this->pdo->exec($sql);
     }
 
-    function save($a) {
-        if(isset($a['id'])) {
+    function save($a)
+    {
+        if (isset($a['id'])) {
             $sql = " UPDATE $this->table SET ";
             $tmp = $this->a2s($a);
-            $sql .= join(" , ",$tmp) . " where `id` = '{$a['id']}'";
+            $sql .= join(" , ", $tmp) . " where `id` = '{$a['id']}'";
             return $this->pdo->exec($sql);
-        }else {
+        } else {
             $sql = " insert into $this->table ";
-            $keys = "`" . join("`,`",array_keys($a)) . "`";
-            $values = "'" . join("','",array_values($a)) . "'";
+            $keys = "`" . join("`,`", array_keys($a)) . "`";
+            $values = "'" . join("','", array_values($a)) . "'";
             $sql .= "($keys) values ($values)";
             return $this->pdo->exec($sql);
         }
@@ -172,9 +173,9 @@ $News = new DB('news');
 $Menu = new DB('menu');
 $Ad = new DB('ad');
 
-if(!isset($_SESSION['visit'])) {
- $t = $Total->find(1);
- $t['total']++;
- $Total->save($t);
- $_SESSION['visit'] =1;
+if (!isset($_SESSION['visit'])) {
+    $t = $Total->find(1);
+    $t['total']++;
+    $Total->save($t);
+    $_SESSION['visit'] = 1;
 }
