@@ -1,38 +1,38 @@
 <?php 
-include_once "db.php";
-dd($_POST);
-$table = $_POST['table'];
-// echo $table;
+
+include_once 'db.php';
+
+$table  = $_POST['table'];
 $db = ${ucfirst($table)};
 
-// print_r( $_POST);
 foreach($_POST['id'] as $key => $id) {
     if(isset($_POST['del']) && in_array($id, $_POST['del'])) {
         $db->del($id);
-    }else{
+    }else {
         $row = $db->find($id);
-        switch($table) {
+        switch ($table) {
             case 'title':
-            $row['text'] = $_POST['text'][$key];
-            $row['sh'] = ($_POST['sh']==$id)?1:0;
-            break;
+                $row['text'] = $_POST['text'][$key];
+                $row['sh'] = ($_POST['sh'] == $id)?1:0;
+                break;
             case 'admin':
                 $row['acc'] = $_POST['acc'][$key];
                 $row['pw'] = $_POST['pw'][$key];
-            break;
+                break;
             case 'menu':
                 $row['text'] = $_POST['text'][$key];
                 $row['href'] = $_POST['href'][$key];
-                $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
-            break;
-            default: 
+                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh']))?1:0;
+
+                break;
+                default:
                 if(isset($row['text'])) {
-                    $row['text'] = $_POST['text'][$key];
+                $row['text'] = $_POST['text'][$key];
+
                 }
-                $row['sh'] = (isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
+                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh']))?1:0;
         }
         $db->save($row);
     }
 }
 to("../back.php?do=$table");
-?>
