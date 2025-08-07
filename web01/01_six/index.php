@@ -31,6 +31,30 @@
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<?php
+					$rows = $Menu->all(['main_id'=>0]);
+					foreach($rows as $row):
+					?>
+					<div class="mainmu">
+						<a href="<?=$row['href'];?>">
+							<?=$row['text'];?>
+						</a>
+						<?php 
+						if($Menu->count(['main_id'=>$row['id']])>0):
+							$subs = $Menu->all(['main_id'=>$row['id']]);
+						?>
+						<div class="mw">
+							<?php foreach($subs as $sub):?>
+								<div class="mainmu2">
+									<a href="<?=$sub['href'];?>">
+										<?=$sub['text'];?>
+									</a>
+								</div>
+							<?php endforeach;?>
+						</div>
+						<?php endif;?>
+					</div>
+					<?php endforeach;?>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
@@ -67,7 +91,7 @@
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
 				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
-					onclick="lo('?do=admin')">管理登入</button>
+					onclick="lo('?do=login')">管理登入</button>
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
 					<div class="cent" onclick="pp(1)">
