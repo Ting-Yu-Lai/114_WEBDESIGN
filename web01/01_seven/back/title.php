@@ -10,6 +10,25 @@
                     <td width="7%">刪除</td>
                     <td></td>
                 </tr>
+                <?php
+                $rows = $db->all();
+                foreach($rows as $row):?>
+                <tr class="">
+                    <td width="45%">
+                        <img src="./image/<?=$row['img'];?>" style="width: 300px;height:30px;" alt="">
+                    </td>
+                    <td width="23%">
+                        <input type="text" name="text" id="text" value="<?=$row['text'];?>">
+                    </td>
+                    <td width="7%">
+                        <input type="radio" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>>
+                    </td>
+                    <td width="7%"><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
+                    <td><input type="button" onclick="op('#cover','#cvr','./modal/update.php?table=<?=$do;?>&id=<?=$row['id'];?>')"
+                            value="更新圖片"></td>
+                </tr>
+                <input type="hidden" name="id[]" value="<?=$row['id'];?>">
+                <?php endforeach;?>
             </tbody>
         </table>
         <table style="margin-top:40px; width:70%;">

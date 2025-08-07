@@ -22,7 +22,7 @@ function to($url) {
 class DB {
 private $table;
 private $pdo;
-    private $dsn = "mysql:host=localhost;dbname=web01;charset=utf8;";
+    private $dsn = "mysql:host=localhost;dbname=web01_07;charset=utf8;";
 
     function __construct($table)
     {
@@ -136,3 +136,13 @@ private $pdo;
         return $this->pdo->exec($sql);
     }
 }
+
+$Title = new DB('title');
+$Total = new DB('total');
+$Admin = new DB('admin');
+$Ad = new DB('ad');
+$Bottom = new DB('bottom');
+$News = new DB('news');
+$Menu = new DB('menu');
+$Mvim = new DB('mvim');
+$Image = new DB('image');
