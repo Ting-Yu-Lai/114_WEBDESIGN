@@ -171,3 +171,4 @@ $Admin = new DB('admin');
 $News = new DB('news');
 $Menu = new DB('menu');
 $Ad = new DB('ad');
+
