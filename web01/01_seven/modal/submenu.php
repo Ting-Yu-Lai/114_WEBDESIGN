@@ -17,7 +17,7 @@
         </div>
         <div style="width: 10%;">
             <label for="img">刪除</label>
-            <input type="checkbox" name="del[]" value="<?=['id'];?>">
+            <input type="checkbox" name="del[]" value="<?=$row['id'];?>">
         </div>
     </div>
     <input type="hidden" name="id[]" value="<?=$row['id'];?>">
@@ -26,7 +26,7 @@
     <div class="cent">
         <input type="hidden" name="main_id" value="<?=$_GET['id'];?>">
         <input type="hidden" name="table" value="<?=$_GET['table'];?>">
-        <input type="submit" value="新增">
+        <input type="submit" value="修改確定">
         <input type="reset" value="重置">
         <input type="button" value="更多次選單" onclick="more()">
     </div>
