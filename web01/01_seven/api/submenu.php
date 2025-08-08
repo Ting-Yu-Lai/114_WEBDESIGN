@@ -20,7 +20,7 @@ if (isset($_POST['id'])) {
 if (isset($_POST['text2'])) {
     foreach ($_POST['text2'] as $key => $text) {
         if ($text != "") {
-            $href = $_POST['href2'];
+            $href = $_POST['href2'][$key];
             $row = $db->save([
                 'text' => $text,
                 'href' => $href,

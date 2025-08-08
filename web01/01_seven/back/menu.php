@@ -12,14 +12,14 @@
                     <td width="10%"></td>
                 </tr>
                 <?php
-                $rows = $db->all();
+                $rows = $db->all(['main_id'=>0]);
                 foreach($rows as $row):?>
                 <tr class="cent">
                     <td width="30%">
-                        <input type="text" name="text[]" id="text" value="<?=$row['text'];?>">
+                        <input type="text" name="text[]" value="<?=$row['text'];?>">
                     </td>
                     <td width="30%">
-                        <input type="text" name="href[]" id="href" value="<?=$row['href'];?>">
+                        <input type="text" name="href[]" value="<?=$row['href'];?>">
                     </td>
                     <td>
                         <?php echo  count($db->all(['main_id'=>$row['id']]));?>
@@ -29,7 +29,7 @@
                     </td>
                     <td width="7%"><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
                     <td><input type="button"
-                            onclick="op('#cover','#cvr','./modal/update.php?table=<?=$do;?>&id=<?=$row['id'];?>')"
+                            onclick="op('#cover','#cvr','./modal/submenu.php?table=<?=$do;?>&id=<?=$row['id'];?>')"
                             value="編輯次選單"></td>
                 </tr>
                 <input type="hidden" name="id[]" value="<?=$row['id'];?>">
