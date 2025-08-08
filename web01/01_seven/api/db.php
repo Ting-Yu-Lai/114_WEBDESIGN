@@ -146,3 +146,10 @@ $News = new DB('news');
 $Menu = new DB('menu');
 $Mvim = new DB('mvim');
 $Image = new DB('image');
+
+if(!isset($_SESSION['visit'])) {
+    $t = $Total->find(1);
+    $t['total']++;
+    $Total->save($t);
+    $_SESSION['visit'] = 1;
+}
