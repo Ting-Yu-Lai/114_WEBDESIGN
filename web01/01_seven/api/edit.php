@@ -23,13 +23,13 @@ foreach($_POST['id'] as $key => $id) {
             case 'menu':
                 $row['text'] = $_POST['text'][$key];
                 $row['href'] = $_POST['href'][$key];
-                $row['sh'] = (isset($_POST['del']) && in_array($id, $_POST['del']))?1:0;
+                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh']))?1:0;
                 break;
             default:
             if(isset($row['text'])) {
                 $row['text'] = $_POST['text'][$key];
             }
-            $row['sh'] = (isset($_POST['del']) && in_array($id, $_POST['del']))?1:0;
+            $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh']))?1:0;
         }
         $db->save($row);
     }

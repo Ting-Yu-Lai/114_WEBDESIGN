@@ -12,12 +12,12 @@ if(isset($_FILES['img']['tmp_name'])) {
 
 switch($table) {
     case 'title':
-        $_POST['sh'] = 1; 
+        $_POST['sh'] = 0; 
         break;
     case 'admin':
         break;
     default:
-        $_POST['sh'] = 0; 
+        $_POST['sh'] = 1; 
 }
 
 unset($_POST['table']);

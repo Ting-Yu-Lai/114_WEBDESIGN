@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli">網站標題管理</p>
-    <form method="post" target="back" action="?do=tii">
+    <form method="post" action="./api/edit.php">
         <table width="100%">
             <tbody>
                 <tr class="yel">
@@ -18,7 +18,7 @@
                         <img src="./image/<?=$row['img'];?>" style="width: 300px;height:30px;" alt="">
                     </td>
                     <td width="23%">
-                        <input type="text" name="text" id="text" value="<?=$row['text'];?>">
+                        <input type="text" name="text[]" id="text" value="<?=$row['text'];?>">
                     </td>
                     <td width="7%">
                         <input type="radio" name="sh" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>>
@@ -28,6 +28,7 @@
                             value="更新圖片"></td>
                 </tr>
                 <input type="hidden" name="id[]" value="<?=$row['id'];?>">
+                <input type="hidden" name="table" value="<?=$do;?>">
                 <?php endforeach;?>
             </tbody>
         </table>

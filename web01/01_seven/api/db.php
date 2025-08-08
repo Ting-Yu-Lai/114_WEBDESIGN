@@ -4,7 +4,7 @@ session_start();
 date_default_timezone_set("Asia/Taipei");
 
 function q($sql) {
-    $dsn = "mysql:host=localhost;dbname=web01;charset=utf8;";
+    $dsn = "mysql:host=localhost;dbname=web01_05;charset=utf8;";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -22,7 +22,7 @@ function to($url) {
 class DB {
 private $table;
 private $pdo;
-    private $dsn = "mysql:host=localhost;dbname=web01_07;charset=utf8;";
+    private $dsn = "mysql:host=localhost;dbname=web01_05;charset=utf8;";
 
     function __construct($table)
     {
