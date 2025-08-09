@@ -22,9 +22,9 @@
     </div>
     <iframe style="display:none;" name="back" id="back"></iframe>
     <div id="main">
-        <a title="<?=$Title->find(['sh'=>1])['text'];?>" href="index.php">
+        <a title="<?= $Title->find(['sh' => 1])['text']; ?>" href="index.php">
             <div class="ti"
-                style="background:url('./image/<?=$Title->find(['sh'=>1])['img'];?>'); background-size:cover;"></div>
+                style="background:url('./image/<?= $Title->find(['sh' => 1])['img']; ?>'); background-size:cover;"></div>
             <!--標題-->
         </a>
         <div id="ms">
@@ -32,60 +32,65 @@
                 <div id="menuput" class="dbor">
                     <!--主選單放此-->
                     <span class="t botli">主選單區</span>
-				<?php $menus = $Menu->all(['main_id'=>0]);
-				foreach($menus as $menu):?>
-				<div class="mainmu">
-					<a href="<?=$menu['href'];?>">
-						<?= $menu['text'];?>
-					</a>
-					<?php 
-					if($Menu->count(['main_id'=>$menu['id']])>0) {
-						$submenu = $Menu->all(['main_id'=>$menu['id']]);
-					?>
-					<div class="mw">
-						<?php foreach($submenu as $sub):?>
-							<div class="mainmu2">
-								<a href="<?=$sub['href'];?>">
-									<?=$sub['text'];?>
-								</a>
-							</div>
-							<?php endforeach;?>
-					</div>
-					<?php }?>
-				</div>
-				<?php endforeach;?>
-				</div>
+                    <!-- 我要拿出所有main_id = 0的主選單 -->
+                    <?php
+                    $menus = $Menu->all(['main_id' => 0]);
+                    foreach ($menus as $menu): ?>
+                        <!-- 我拿出來之後要建立class mainmu 把href放進a連結印出text -->
+                        <div class="mainmu">
+                            <a href="<?= $menu['href']; ?>">
+                                <?= $menu['text']; ?>
+                                <!-- 然後我要確認次選單main_id=>$menu['id']有資料就印出來 -->
+                                <?php if ($Menu->count(['main_id' => $menu['id']]) > 0) { ?>
+                                    <!-- 如果有就撈出次選單 -->
+                                    <?php $subs = $Menu->all(['main_id' => $menu['id']]); ?>
+                                    <!-- 套上自己寫的css mw -->
+                                    <div class="mw">
+                                        <?php foreach ($subs as $sub): ?>
+                                            <!-- 再加上原本有的mainmu2 -->
+                                            <div class="mainmu2">
+                                                <a href="<?= $sub['href']; ?>">
+                                                    <?= $sub['text']; ?>
+                                                </a>
+                                            </div>
+                                            <?php endforeach; ?>
+                                    </div>
+                                <?php }; ?>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
                 <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-                    <span class="t">進站總人數 :<?=$Total->find(1)['total'];?></span>
+                    <span class="t">進站總人數 :<?= $Total->find(1)['total']; ?></span>
                 </div>
             </div>
             <?php
-				$do = $_GET['do']??'main';
-				// $db= ${ucfirst($do)};
-				$file = "./front/" .$do.".php";
-				if(file_exists($file)) {
-					include_once $file;
-				}else {
-					include_once "./front/main.php";
-				}
-				?>
+            $do = $_GET['do'] ?? 'main';
+            // $db= ${ucfirst($do)};
+            $file = "./front/" . $do . ".php";
+            if (file_exists($file)) {
+                include_once $file;
+            } else {
+                include_once "./front/main.php";
+            }
+            ?>
             <div id="alt"
                 style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
             </div>
             <script>
-            $(".sswww").hover(
-                function() {
-                    $("#alt").html("" + $(this).children(".all").html() + "").css({
-                        "top": $(this).offset().top - 50
-                    })
-                    $("#alt").show()
-                }
-            )
-            $(".sswww").mouseout(
-                function() {
-                    $("#alt").hide()
-                }
-            )
+                $(".sswww").hover(
+                    function() {
+                        $("#alt").html("" + $(this).children(".all").html() + "").css({
+                            "top": $(this).offset().top - 50
+                        })
+                        $("#alt").show()
+                    }
+                )
+                $(".sswww").mouseout(
+                    function() {
+                        $("#alt").hide()
+                    }
+                )
             </script>
             <div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
                 <!--右邊-->
@@ -98,36 +103,36 @@
                         <img src="./icon/up.jpg" alt="" onclick="pp(1)">
                     </div>
                     <?php
-						$images = $Image->all(['sh'=>1]);
-						foreach($images as $key => $image):
-					?>
-                    <div class="cent im" id="ssaa<?=$key?>">
-                        <img src="./image/<?=$image['img'];?>"
-                            style="width:150px;height:103px;border:5px solid oranage;margin:3px;">
-                    </div>
-                    <?php endforeach;?>
+                    $images = $Image->all(['sh' => 1]);
+                    foreach ($images as $key => $image):
+                    ?>
+                        <div class="cent im" id="ssaa<?= $key ?>">
+                            <img src="./image/<?= $image['img']; ?>"
+                                style="width:150px;height:103px;border:5px solid oranage;margin:3px;">
+                        </div>
+                    <?php endforeach; ?>
                     <div class="cent">
                         <img src="./icon/dn.jpg" alt="" onclick="pp(2)">
                     </div>
                     <script>
-                    var nowpage = 0,
-                        num = <?=$Image->count(['sh'=>1]);?>;
+                        var nowpage = 0,
+                            num = <?= $Image->count(['sh' => 1]); ?>;
 
-                    function pp(x) {
-                        var s, t;
-                        if (x == 1 && nowpage - 1 >= 0) {
-                            nowpage--;
+                        function pp(x) {
+                            var s, t;
+                            if (x == 1 && nowpage - 1 >= 0) {
+                                nowpage--;
+                            }
+                            if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+                                nowpage++;
+                            }
+                            $(".im").hide()
+                            for (s = 0; s <= 2; s++) {
+                                t = s * 1 + nowpage * 1;
+                                $("#ssaa" + t).show()
+                            }
                         }
-                        if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
-                            nowpage++;
-                        }
-                        $(".im").hide()
-                        for (s = 0; s <= 2; s++) {
-                            t = s * 1 + nowpage * 1;
-                            $("#ssaa" + t).show()
-                        }
-                    }
-                    pp(1)
+                        pp(1)
                     </script>
                 </div>
             </div>
@@ -135,7 +140,7 @@
         <div style="clear:both;"></div>
         <div
             style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-            <span class="t" style="line-height:123px;"><?=$Bottom->find(1)['bottom'];?></span>
+            <span class="t" style="line-height:123px;"><?= $Bottom->find(1)['bottom']; ?></span>
         </div>
     </div>
 
