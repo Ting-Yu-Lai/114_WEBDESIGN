@@ -102,21 +102,19 @@
                     <div class="cent">
                         <img src="./icon/up.jpg" alt="" onclick="pp(1)">
                     </div>
-                    <?php
-                    $images = $Image->all(['sh' => 1]);
-                    foreach ($images as $key => $image):
-                    ?>
-                        <div class="cent im" id="ssaa<?= $key ?>">
-                            <img src="./image/<?= $image['img']; ?>"
-                                style="width:150px;height:103px;border:5px solid oranage;margin:3px;">
-                        </div>
-                    <?php endforeach; ?>
+                    <?php 
+                    $image = $Image->all(['sh'=>1]);
+                    foreach($image as $key => $img):?>
+                    <div class="cent im" id="ssaa<?=$key;?>">
+                        <img src="./image/<?=$img['img'];?>" style="width: 150px;height:103px;border:3px solid orange;margin:3px;" alt="">
+                    </div>
+                    <?php endforeach;?>
                     <div class="cent">
                         <img src="./icon/dn.jpg" alt="" onclick="pp(2)">
                     </div>
                     <script>
                         var nowpage = 0,
-                            num = <?= $Image->count(['sh' => 1]); ?>;
+                            num = <?=$Image->count(['sh'=>1]);?>;
 
                         function pp(x) {
                             var s, t;
