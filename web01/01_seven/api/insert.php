@@ -1,28 +1,25 @@
-<?php 
-
-include_once 'db.php';
-
-$table = $_POST['table'];
-$db = ${ucfirst($table)};
+<?php
+include_once "db.php";
 
 if(isset($_FILES['img']['tmp_name'])) {
     move_uploaded_file($_FILES['img']['tmp_name'], "../image/".$_FILES['img']['name']);
-    $_POST['img'] = $_FILES['img']['name'];    
+    $_POST['img'] = $_FILES['img']['name'];
 }
+
+$table = $_GET['table'];
+$db = ${ucfirst($table)};
 
 switch($table) {
     case 'title':
-        $_POST['sh'] = 0; 
+        $_POST['sh'] = 0;
         break;
     case 'admin':
         break;
     default:
-        $_POST['sh'] = 1; 
+        $_POST['sh'] = 1;
 }
-
 unset($_POST['table']);
 $db->save($_POST);
 
 to("../back.php?do=$table");
-
 ?>
