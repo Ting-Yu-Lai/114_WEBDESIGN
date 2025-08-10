@@ -1,8 +1,8 @@
 <?php
 
 include_once "db.php";
+$table = $_POST['table'];
 
-$table = $_GET['table'];
 $db = ${ucfirst($table)};
 
 foreach ($_POST['id'] as $key => $id) {

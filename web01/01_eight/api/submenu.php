@@ -1,7 +1,8 @@
 <?php
 
 include_once "db.php";
-$table = $_GET['table'];
+$table = $_POST['table'];
+
 $db = ${ucfirst($table)};
 $main_id = $_POST['main_id'];
 
