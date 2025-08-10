@@ -148,3 +148,20 @@ class DB
         return $this->pdo->exec($sql);
     }
 }
+
+$Title = new DB('title');
+$Total = new DB('total');
+$Bottom = new DB('bottom');
+$Ad = new DB('ad');
+$Admin = new DB('admin');
+$Menu = new DB('menu');
+$News = new DB('news');
+$Mvim = new DB('mvim');
+$Image = new DB('image');
+
+if(!isset($_SESSION['visit'])) {
+    $t = $Total->find(1);
+    $t['total']++;
+    $Total->save($t);
+    $_SESSION['visit'] = 1;
+}
