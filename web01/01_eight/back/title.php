@@ -16,6 +16,27 @@
                     <td width="7%">刪除</td>
                     <td></td>
                 </tr>
+                <?php 
+                $row = $db->all();
+                foreach($row as $r):?>
+                <tr class="">
+                    <td width="45%">
+                        <img src="./image/<?=$r['img'];?>" style="width: 300px;height:30px;" alt="">
+                    </td>
+                    <td width="23%">
+                        <input type="text" name="text[]" value="<?=$r['text'];?>" id="">
+                    </td>
+                    <td width="7%">
+                        <input type="radio" name="sh" id="" value="<?=$r['id'];?>" <?=($r['sh']==1)?'checked':'';?>>
+                    </td>
+                    <td width="7%"><input type="checkbox" name="del[]" value="<?=$r['id'];?>" id=""></td>
+                    <td>
+                        <input type="button" onclick="op('#cover','#cvr','./modal/update.php?table=<?=$do;?>&id=<?=$r['id'];?>')" value="更新圖片" />
+                    </td>
+                </tr>
+                <input type="hidden" name="table" value="<?=$do;?>">
+                <input type="hidden" name="id[]" value="<?=$r['id'];?>">
+                <?php endforeach;?>
             </tbody>
         </table>
         <table style="margin-top: 40px; width: 70%">
