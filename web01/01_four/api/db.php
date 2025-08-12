@@ -19,7 +19,7 @@ function to($url)
 
 class DB
 {
-    private $dsn = "mysql:host=localhost;dbname=db04;charset=utf8";
+    private $dsn = "mysql:host=localhost;dbname=web01_05;charset=utf8";
     private $table;
     private $pdo;
 
@@ -132,9 +132,9 @@ $Image = new DB('image');
 $Bottom = new DB('bottom');
 
 
-if(!isset($_SESSION['view'])) {
-    $t = $Total->find(1);
-    $t['total']++;
-    $Title->save($t);
-    $_SESSION['view']=1;
-}
+// if(!isset($_SESSION['view'])) {
+//     $t = $Total->find(1);
+//     $t['total']++;
+//     $Title->save($t);
+//     $_SESSION['view']=1;
+// }
