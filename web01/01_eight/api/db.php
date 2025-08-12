@@ -16,7 +16,7 @@ function to($url)
 
 function q($sql)
 {
-    $dsn = "mysql:host=localhost;dbname=web01_08;charset=utf8";
+    $dsn = "mysql:host=localhost;dbname=web01_05;charset=utf8";
     $pdo = new PDO($dsn, 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -25,7 +25,7 @@ class DB
 {
     private $table;
     private $pdo;
-    private $dsn = "mysql:host=localhost;dbname=web01_08;charset=utf8";
+    private $dsn = "mysql:host=localhost;dbname=web01_05;charset=utf8";
 
     function __construct($table)
     {
@@ -44,11 +44,11 @@ class DB
 
     function all(...$arg)
     {
-        $sql = "select * from $this->table";
+        $sql = "select * from $this->table ";
         if (isset($arg[0])) {
             if (is_array($arg[0])) {
                 $tmp = $this->a2s($arg[0]);
-                $sql .= " where " . join(" and ", $tmp);
+                $sql .= " where " . join(" AND   ", $tmp);
             } else {
                 $sql .= $arg[0];
             }
@@ -56,6 +56,7 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
+        // echo $sql;
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
