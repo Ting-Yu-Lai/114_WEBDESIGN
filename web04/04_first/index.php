@@ -26,8 +26,29 @@
                 <a href="?do=news">最新消息</a> |
                 <a href="?do=look">購物流程</a> |
                 <a href="?do=buycart">購物車</a> |
-                <a href="?do=login">會員登入</a> |
-                <a href="?do=admin">管理登入</a>
+                <?php 
+                    if(isset($_SESSION['login'])) {
+                        echo "<a href='./api/logout.php'>";
+                        echo "登出";
+                        echo "</a>";
+                    } else {
+                        echo "<a href='?do=login'>";
+                        echo "會員登入";
+                        echo "</a>"; 
+                    }
+                    ?>
+                    |
+                <?php 
+                    if(isset($_SESSION['login'])) {
+                        echo "<a href='./api/logout.php'>";
+                        echo "返回管理";
+                        echo "</a>";
+                    } else {
+                        echo "<a href='?do=admin'>";
+                        echo "管理登入";
+                        echo "</a>"; 
+                    }
+                    ?>
             </div>
             <marquee behavior="" direction="">
                 情人節特惠活動~ &nbsp;&nbsp;&nbsp; 情人節特惠活動~ &nbsp;&nbsp;&nbsp;
