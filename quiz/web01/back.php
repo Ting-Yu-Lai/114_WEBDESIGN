@@ -92,6 +92,8 @@
                 </table>
                 <?php
 				$do = $_GET['do']??'title';
+				$db = ${
+					ucfirst($do)};
 				$file = "./back/{$do}.php";
 				if(file_exists(($file))) {
 					include_once $file;
