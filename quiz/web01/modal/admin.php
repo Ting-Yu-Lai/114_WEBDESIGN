@@ -2,12 +2,16 @@
 <hr>
 <form action="./api/insert.php" method="post" enctype="multipart/form-data">
     <div class="cent">
-        <label for="img">標題區圖片：</label>
-        <input type="file" name="img" id="">
+        <label for="img">帳號：</label>
+        <input type="text" name="acc" id="text">
     </div>
     <div class="cent">
-        <label for="img">標題區替代文字：</label>
-        <input type="text" name="text" id="text">
+        <label for="img">密碼：</label>
+        <input type="password" name="pw" id="text">
+    </div>
+    <div class="cent">
+        <label for="img">確認密碼：</label>
+        <input type="password">
     </div>
     <div class="cent">
         <input type="hidden" name="table" value="<?=$_GET['table']?>">
