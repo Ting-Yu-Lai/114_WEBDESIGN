@@ -152,6 +152,6 @@ class DB {
 }
 
 $Poster = new DB('posters');
-$Movie = new DB('movie');
+$Movie = new DB('movies');
 
 ?>
