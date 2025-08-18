@@ -47,7 +47,9 @@
 </table>
 
 <h2 class="ct">商品管理</h2>
-
+<div class="ct">
+    <button onclick="location.href='?do=add_item'">新增商品</button>
+</div>
 <table class="all">
     <tr class="tt ct">
         <td>編號</td>
