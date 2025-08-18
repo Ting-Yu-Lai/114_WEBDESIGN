@@ -2,7 +2,7 @@
 <div class="ct">
     新增大分類
     <input type="text" name="big" id="type">
-    <button>新增</button>
+    <button onclick="addBig()">新增</button>
 </div>
 <div class="ct">
     新增中分類
@@ -38,6 +38,20 @@
         <td>庫存量</td>
         <td>狀態</td>
         <td>狀態</td>
+        <td>
+            <button>修改</button>
+            <button>刪除</button>
+            <button>上架</button>
+            <button>下架</button>
         </td>
     </tr>
 </table>
+
+<script>
+    function addBig() {
+        let name=$("#big").val();
+        $.post("./api/save_type.php",{name,big_id:0},()=>{
+
+        })
+    }
+</script>
