@@ -68,34 +68,58 @@
 </table>
 
 <script>
-    getBigs();
-    function addBig() {
-        let name=$("#big").val();
-        $.post("./api/save_type.php",{name,big_id:0},()=>{
-            $("#big").val();
-            getBigs();
-        })
-    }
-    
-    function addMid() {
-        let name=$("#mid").val();
-        let big_id=$("#selBig").val();
-        $.post("./api/save_type.php",{name,big_id},()=>{
+getBigs();
+
+function addBig() {
+    let name = $("#big").val();
+    $.post("./api/save_type.php", {
+        name,
+        big_id: 0
+    }, () => {
+        $("#big").val();
+        getBigs();
+    })
+}
+
+function addMid() {
+    let name = $("#mid").val();
+    let big_id = $("#selBig").val();
+    $.post("./api/save_type.php", {
+        name,
+        big_id
+    }, () => {
+        location.reload();
+    })
+}
+
+function getBigs() {
+    $.get("./api/get_bigs.php", (options) => {
+        $("#selBig").html(options);
+    })
+}
+
+$(".del-btn").on("click", function() {
+    let id = $(this).data('id');
+    if (confirm("確定要刪除這筆分類資料嗎?")) {
+        $.post("./api/del.php", {
+            id,
+            table: Type
+        }, () => {
             location.reload();
         })
     }
-    function getBigs() {
-        $.get("./api/get_bigs.php",(options)=>{
-            $("#selBig").html(options);
+})
+
+$(".edit-btn").on("click", function() {
+    let id = $(this).data('id');
+    let name =$(this).parent().prev().text();
+    let newName = prompt("請輸入新的分類名稱",name);
+    if(newName!=null) {
+        $.post("./api/save_type.php",{id,name:newName},()=>{
+            $(this).parent().prev().text(newName);
+            location.reload();
         })
     }
-
-    $(".del-btn").on("click",function(){
-        let id = $(this).data('id');
-        if(confirm("確定要刪除這筆分類資料嗎?")) {
-            $.post("./api/del.php",{id,table:Type},()=>{
-                location.reload();
-            })
-        }
-    })
+    
+})
 </script>
