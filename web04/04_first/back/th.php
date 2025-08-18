@@ -1,3 +1,7 @@
+<?php if(!isset($_POST['big'])) {
+    $Type->save($_POST);
+}
+?>
 <h2 class="ct">商品分類</h2>
 <div class="ct">
     新增大分類
@@ -72,7 +76,7 @@ getBigs();
 
 function addBig() {
     let name = $("#big").val();
-    $.post("./api/save_type.php", {
+    $.post("./th.php", {
         name,
         big_id: 0
     }, () => {
@@ -103,7 +107,7 @@ $(".del-btn").on("click", function() {
     if (confirm("確定要刪除這筆分類資料嗎?")) {
         $.post("./api/del.php", {
             id,
-            table: Type
+            table: 'Type'
         }, () => {
             location.reload();
         })
