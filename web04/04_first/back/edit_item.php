@@ -55,9 +55,9 @@ $item = $Item->find($_GET['id']);
 function getBigs() {
     $.get("./api/get_bigs.php", (bigs) => {
         $("#mid").html(options);
-        <?php if(isset($_GET['id'])):?> 
-         $('#big option[value={<?=$item['big_id'];?>}]').
-        <?php endif;?>
+        <?php if(isset($_GET['id'])):?>;
+         $('#big option[value={<?=$item['big'];?>}]').prop('selected',true);
+        <?php endif;?>;
         getMids();
     })
 }
