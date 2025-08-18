@@ -47,8 +47,12 @@ $item = $Item->find($_GET['id']);
             <td class="pp"><textarea name="intro" id="intro" style="width: 75%;height:150px"><?=$item['intro'];?></textarea></td>
         </tr>
     </table>
-    <div class="ct"><input type="submit" value="新增"><input type="reset" value="重置"><button
-            onclick="location.href='?do=th'">取消</button></div>
+    <div class="ct">
+        <input type="hidden" name="id" value="<?=$item['id'];?>">
+        <input type="submit" value="修改">
+        <input type="reset" value="重置"><button
+            onclick="location.href='?do=th'">返回</button>
+        </div>
 </form>
 <script>
     getBigs();
@@ -66,6 +70,9 @@ function getMids() {
     let bigId = $("#big").val();
     $.get("./api/get_bigs.php", {bigId},(bigs) => {
         $("#big").html(options);
+                <?php if(isset($_GET['id'])):?>;
+         $('#mid option[value={<?=$item['mid'];?>}]').prop('selected',true);
+        <?php endif;?>;
     })
 }
 
