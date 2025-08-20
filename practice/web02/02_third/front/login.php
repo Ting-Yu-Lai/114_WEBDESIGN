@@ -13,7 +13,7 @@
             <tr>
                 <td>
                     <input type="button" value="登入" onclick="login()">
-                    <input type="reset" value="重置">
+                    <input type="reset" value="重置" onclick="cleanform()">
                 </td>
                 <td>
                     <a href="?do=forgot">忘記密碼</a>|
@@ -35,11 +35,11 @@
             if(parseInt(res)) {
                 // 在比對密碼
                 $.get("./api/chkPw.php",data,(res)=>{
-                    if(parseInt) {
+                    if(parseInt(res)) {
                         if(data.acc == 'admin') {
                             location.href='back.php';
                         }else {
-                            locaiton.href='index.php';
+                            locaiton.href='index.php?do=main';
                         }
                     }else {
                         alert("密碼錯誤");
@@ -50,5 +50,10 @@
                 alert("查無此帳號");
             }
         })
+    }
+
+    function cleanform() {
+        $("#acc").val("");
+        $("#pw").val("");
     }
 </script>
