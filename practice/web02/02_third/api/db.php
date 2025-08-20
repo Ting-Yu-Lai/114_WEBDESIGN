@@ -70,6 +70,7 @@ class DB
         if (isset($arg[1])) {
             $sql .= $arg[1];
         }
+        // echo $sql;
         return $this->pdo->query($sql)->fetchColumn();
     }
 
@@ -152,6 +153,7 @@ class DB
 
 $User = new DB('user');
 $Visit = new DB('visit');
+$News = new DB('news');
 
 // 測試資料表連線
 // $User->save(['acc'=>'test ','pw'=>'5678 ','email'=>'test@labor.gov.tw' ]);
@@ -174,3 +176,4 @@ if(!isset($_SESSION['visit'])) {
     // 儲存session紀錄
     $_SESSION['visit'] = 1;
 }
+
