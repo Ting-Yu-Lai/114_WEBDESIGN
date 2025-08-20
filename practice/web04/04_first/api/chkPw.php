@@ -13,7 +13,7 @@ if($chk) {
         case 'User':
             $_SESSION['login'] = $_GET['acc'];
         break;
-            case 'Admin' :
+            case 'Admin':
             $_SESSION['admin'] = $_GET['acc'];
         break;
     
