@@ -54,7 +54,16 @@
                         </div>
                     </div>
                 </td>
-                <td>人氣</td>
+                <td>
+                    <span><?=$row['good'];?></span>個人說
+                    <img src="./icon/02B03.jpg" style="width: 18px;" alt="">
+                    <?php
+                    if(isset($_SESSION['login'])):
+                        $chk = $Log->count(['news'=>$row['id'],'user'=>$_SESSION['login']]);
+                    ?>
+                    <a href="#" onclick="good(<?=$row['id'];?>)"><?=($chk)?'-收回讚':'-讚';?></a>
+                    <?php endif;?> 
+                </td>
             </tr>
         <?php
         endforeach;
@@ -89,4 +98,10 @@
             $(this).next().find(".pop").hide();
         }
     )
+    
+    function good(news) {
+        $.post("./api/good.php",{news},function(){
+            location.reload();
+        })
+    }
 </script>

@@ -162,6 +162,7 @@ $User = new DB('user');
 $Visit = new DB('visit');
 $News = new DB('news');
 $Que = new DB('que');
+$Log = new DB('log');
 
 // 測試資料表連線
 // $User->save(['acc'=>'test ','pw'=>'5678 ','email'=>'test@labor.gov.tw' ]);
