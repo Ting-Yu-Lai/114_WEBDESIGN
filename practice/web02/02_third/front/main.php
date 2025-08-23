@@ -1,5 +1,5 @@
 <style>
-    .tabs {
+    /* .tabs {
         display: flex;
         margin-left: 1px;
     }
@@ -10,7 +10,6 @@
         text-align: center;
         background-color: #ccc;
         margin-left: -1px;
-        text-align: center;
     }
 
     .tab.active {
@@ -29,6 +28,35 @@
     }
 
     .post.active{
+        display: block;
+    } */
+    .tabs {
+        display: flex;
+        margin-left: 1px;
+    }
+    .tab {
+        width: 100px;
+        background-color: #ccc;
+        border: 1px solid black;
+        margin-left: -1px;
+        text-align: center;
+    }
+
+    .tab.active {
+        background-color: #fff;
+        border-bottom: 1px solid white;
+    }
+    .post {
+        width: 95%;
+        height: 430px;
+        display: none;
+        overflow: auto;
+        border: 1px solid black;
+        padding: 10px;
+        margin-top: -1px;
+    }
+
+    .post.active {
         display: block;
     }
 </style>
@@ -133,10 +161,13 @@
 </div>
 <script>
     $('.tab').on("click",function(){
-        $(".tab").removeClass("active");
+        $('.tab').removeClass("active");
         $(this).addClass("active");
-        let post = $(this).attr('id').replace("tab","post");
+        let post = $(this).attr("id").replace("tab","post");
+        // console.log(post);
+        // 拿掉class的active
         $(".post").removeClass("active");
+        // 加入id的active
         $("#"+post).addClass("active");
     })
 </script>

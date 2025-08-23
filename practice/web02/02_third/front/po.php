@@ -22,6 +22,7 @@
         // console.log(type);
         $("#navp").text("");
         $("#navp").text(type);
+        // 拿到type數字傳去更新List清單
         let typeId = $(this).data('type');
         getList(typeId);
     });
@@ -45,9 +46,7 @@
 
     // 再拿到datatype 去列出有的list
     function getList(type) {
-        $.get("./api/get_type_list.php", {
-            type
-        }, function(list) {
+        $.get("./api/get_type_list.php", {type}, function(list) {
             $("#post").html("");
             $('#typeList').html(list);
             // 拿到從get_type_list回來的post id 傳給getPost
