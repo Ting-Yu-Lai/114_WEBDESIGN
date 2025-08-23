@@ -8,6 +8,17 @@
         text-decoration: underline;
         color: green;
     }
+
+    .pop {
+        background: rgba(51, 51, 51, 0.8);
+        color: #FFF;
+        min-height: 100px;
+        width: 500px;
+        position: fixed;
+        display: none;
+        z-index: 9999;
+        overflow: auto;
+    }
 </style>
 
 <fieldset>
@@ -20,7 +31,7 @@
         </tr>
         <?php
         $all = count($News->all());
-        $div = 3;
+        $div = 4;
         $page = ceil($all / $div);
         $now = $_GET['p'] ?? 1;
         $start = ($now - 1) * $div;
@@ -29,7 +40,20 @@
         ?>
             <tr class="ct">
                 <td class="title"><?= $row['title']; ?></td>
-                <td width="60%">內容</td>
+                <td >
+                    <div class="short">
+                        <?= mb_substr($row['text'], 0, 30); ?>...
+                    </div>
+                    <div class="all">
+                        <div id="alerr" class="pop">
+                            <h3>
+                                <?= $Type[$row['type']]; ?>
+                            </h3>
+                            <pre id="ssaa"><?= $row['text']; ?></pre>
+    
+                        </div>
+                    </div>
+                </td>
                 <td>人氣</td>
             </tr>
         <?php
@@ -56,3 +80,13 @@
                 <?php endif; ?>
     </div>
 </fieldset>
+<script>
+    $('.title').hover(function() {
+            $(this).next().find(".pop").show();
+            console.log($(this).next().find(".pop"));
+        },
+        function() {
+            $(this).next().find(".pop").hide();
+        }
+    )
+</script>

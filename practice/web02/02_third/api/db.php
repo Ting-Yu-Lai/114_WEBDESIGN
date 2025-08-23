@@ -3,6 +3,13 @@
 session_start();
 date_default_timezone_set("Asia/Taipei");
 
+$Type = [
+    1 => "健康新知",
+    2 => "菸害防制",
+    3 => "癌症防治",
+    4 => "慢性病防治",
+];
+
 
 function dd($data)
 {
