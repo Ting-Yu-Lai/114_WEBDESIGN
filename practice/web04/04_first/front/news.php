@@ -1,23 +1,24 @@
-<!-- 最新消息1
-標題
-年終特賣會開跑了
-內容
-即日期至年底，凡會員購物滿仟送佰，買越多送越多~
-最新消息2
-標題
-情人節特惠活動
-內容
-為了慶祝七夕情人節，將舉辦情人兩人到現場有七七折之特惠活動~ -->
-<div class="ct">最新消息</div>
-<div class="ct" style="color:red;">*點擊標題觀看詳細資訊</div>
-<table class="all">
-    <tr class="tt ct">
-        <td>標題</td>
-    </tr>
-    <tr class="pp">
-        <td>情人節特惠活動</td>
-    </tr>
-    <tr class="pp">
-        <td>年終特賣會開跑了</td>
-    </tr>
-</table>
+<?php 
+$type=$_GET['type']??0;
+$nav = "全部商品";
+
+if($type != 0) {
+    // type不是0就把資料都撈出來
+    $row=$Type->find($type);
+    if($row['big_id']==0){
+        $nav=$row['name'];
+        $items=$Item->all(['big'=>$type,'sh'=>1]);
+    }else{
+        $big = $Type->find($row['big_id']);
+        $nav=$big['name'] . " > ".$row['name'];
+        $items=$Item->all(['mid'=>$type,'sh'=>1]);
+    }  
+}else{
+    $items = $Item->all(['sh'=>1]);
+}
+?>
+<h2><?=$nav;?></h2>
+<?php foreach($items as $item):?>
+    <?=$item['name'];?>
+    <?php endforeach;?>
+
