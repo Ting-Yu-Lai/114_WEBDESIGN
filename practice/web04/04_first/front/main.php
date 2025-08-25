@@ -25,7 +25,9 @@
 foreach ($items as $item): ?>
 <div style="display: flex;width:65%;margin:auto;height:150px;">
     <div class="pp">
-    <img src="./image/<?=$item['img'];?>" style="width: 150px;height:100px;" alt="">
+        <a href="?do=detail&id=<?=$item['id'];?>">
+            <img src="./image/<?=$item['img'];?>" style="width: 150px;height:100px;" alt="">
+        </a>
     </div>
     <div class="tt">
     <div class="pp">
@@ -34,7 +36,11 @@ foreach ($items as $item): ?>
                 <td><?=$item['name'];?></td>
             </tr>
             <tr class="pp">
-                <td>價錢:<?=$item['price'];?></td>
+                <td>價錢:<?=$item['price'];?>
+                <a href="?do=buycart&id=<?=$item['id'];?>">
+                    <img src="./icon/0402.jpg" style="float: right;" alt=""> 
+                </a>
+            </td>
             </tr>
             <tr class="pp">
                 <td>規格:<?=$item['spec'];?></td>
