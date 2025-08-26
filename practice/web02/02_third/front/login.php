@@ -39,15 +39,18 @@
                         if(data.acc == 'admin') {
                             location.href='back.php';
                         }else {
+                            cleanform();
                             locaiton.href='index.php?do=main';
                         }
                     }else {
                         alert("密碼錯誤");
+                        cleanform();
                         locaiton.href="index.php?do=login";
                     }
                 })
             }else {
                 alert("查無此帳號");
+                cleanform();
             }
         })
     }
