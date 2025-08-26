@@ -100,6 +100,11 @@ input[type=text],input[type=password]
 .s
 {
 	display:none;
+	
+}
+
+#left .s a {
+	background-color: #fff;
 }
 div.ww:hover > div.s
 {

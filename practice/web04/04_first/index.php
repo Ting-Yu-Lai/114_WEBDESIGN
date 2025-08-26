@@ -56,6 +56,26 @@
         </div>
         <div id="left" class="ct">
             <div style="min-height:400px;">
+                <a href="?type=0">全部商品(<?=$Item->count(['sh'=>1]);?> )</a>
+                <?php $bigs = $Type->all(['big_id'=>0]);
+                foreach($bigs as $big):
+                ?>
+                <div class="ww">
+
+                    <a href="?type=<?=$big['id'];?>"><?=$big['name'];?>(<?=$Item->count(['big'=>$big['id'],'sh'=>1]);?>)</a>
+                    <?php 
+                if($Type->count(['big_id'=>$big['id']])>0):
+                    $mids = $Type->all(['big_id'=>$big['id']]);
+                    foreach($mids as $mid):
+                        ?>
+                <!-- 如果只用class會卡住 所以在.s 的 css加上#left -->
+                 <div class="s">
+                     <a  href="?type=<?=$mid['id'];?>"><?=$mid['name'];?>(<?=$Item->count(['mid'=>$mid['id'],'sh'=>1]);?>)</a>
+                 </div>
+                <?php endforeach;?>
+                <?php endif;?>
+            </div>
+                <?php endforeach;?>
             </div>
             <span>
                 <div>進站總人數</div>
@@ -75,7 +95,7 @@
 	?>
         </div>
         <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-            頁尾版權 : </div>
+            頁尾版權 : <?=$Bot->find(1)['bottom'];?></div>
     </div>
 
 </body>
