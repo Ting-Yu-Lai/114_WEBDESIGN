@@ -154,4 +154,5 @@ $Admin = new DB('admin');
 $Type = new DB('type');
 $Bot = new DB('bot');
 $Item = new DB('item');
+$Orders = new DB('orders');
 
