@@ -150,8 +150,9 @@ class DB
         }else{
             $sql = "insert into $this->table ";
             $key = join("`,`",array_keys($a));
-            $value = join("`,`",array_values($a));
+            $value = join("','",array_values($a));
             $sql .= "(`$key`) values ('$value')";
+            // echo $sql;
         }
         return $this->pdo->exec($sql);
     }
@@ -160,12 +161,14 @@ class DB
 $Visit = new DB('visit');
 $User = new DB('user');
 
-
+// $User->save(['acc'=>'test', 'pw' => '5678', 'email'=>'test@labor.gov.tw']);
+// $User->save(['acc'=>'mem01', 'pw' => 'mem01', 'email'=>'mem01@labor.gov.tw']);
+// $User->save(['acc'=>'mem02', 'pw' => 'mem02', 'email'=>'mem02@labor.gov.tw']);
 
 if(!isset($_SESSION['visit'])) {
     $today = $Visit->find(['date'=>date("Y-m-d")]);
     if(empty($today)) {
-        $Visit->save(['date'=>date("Y-m-d")]);
+        $Visit->save(['date'=>date("Y-m-d"),'visit'=>"1"]);
     }else{
         $today['visit']++;
         $Visit->save($today);
