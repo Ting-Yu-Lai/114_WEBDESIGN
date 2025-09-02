@@ -15,7 +15,7 @@
                 $news  = $News->all(" limit $start,$div");
             foreach ($news as $idx => $new): ?>
             <tr class="ct">
-                <td style="width: 10%;background-color:#ccc"><?php echo $idx + 1;?>.</td>
+                <td style="width: 10%;background-color:#ccc"><?php echo $idx+$start+ 1;?>.</td>
                 <td><?php echo $new['title'];?></td>
                 <td style="width: 10%;"><input type="checkbox" name="sh[]" <?=($new['sh']==1)?'checked':'';?> value="<?php echo $new['id']; ?>" id=""></td>
                 <td style="width: 10%;"><input type="checkbox" name="del[]" value="<?php echo $new['id']; ?>" id=""></td>
