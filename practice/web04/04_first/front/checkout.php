@@ -52,4 +52,9 @@
 </table>
 <div class="all tt ct">
     總價:<?= $sum;?>
+    <input type="hidden" name="total" value="<?=$sum;?>">
+    <div class="ct">
+        <input type="submit" value="確定送出">
+        <input type="button" value="返回修改訂單" onclick="location.href='?do=buycart'">
+    </div>
 </div>
