@@ -42,7 +42,7 @@
             <div class="hal" id="lef">
                 <a class="blo" href="?do=acc">帳號管理</a>
                 <a class="blo" href="?do=po">分類網誌</a>
-                <a class="blo" href="?do=news">最新管理</a>
+                <a class="blo" href="?do=news">最新文章管理</a>
                 <a class="blo" href="?do=know">講座訊息</a>
                 <a class="blo" href="?do=que">問卷調查</a>
             </div>
