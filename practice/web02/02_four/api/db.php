@@ -161,6 +161,7 @@ class DB
 $Visit = new DB('visit');
 $User = new DB('user');
 $News = new DB('news');
+$Que = new DB('que');
 
 // $User->save(['acc'=>'test', 'pw' => '5678', 'email'=>'test@labor.gov.tw']);
 // $User->save(['acc'=>'mem01', 'pw' => 'mem01', 'email'=>'mem01@labor.gov.tw']);
