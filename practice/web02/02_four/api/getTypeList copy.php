@@ -1,7 +1,8 @@
-<?php
+<?php 
 include_once "db.php";
 
-$news = $News->find($_GET['type']);
+// 拿到的文章type是要可以後續列出文章的所以
+$news =  $News->all(['type'=>$_GET['type']]);
 foreach($news as $new):
 ?>
 <div>
