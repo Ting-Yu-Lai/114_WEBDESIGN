@@ -18,10 +18,9 @@
             foreach ($rows as $idx => $row):
         ?>
         <tr class="ct">
-            <td><?=$idx + 1;?></td>
             <td><?php echo $row['text'];?></td>
             <td>
-                <?= $row['vote'];?>
+                <?=$row['vote'];?>
             </td>
             <td>
                 <a href="?do=result&id=<?=$row['id'];?>">結果</a>
