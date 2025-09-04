@@ -1,7 +1,7 @@
 <style>
     .line {
-        background-color: gray;
         height: 24px;
+        background-color: #ccc;
     }
 </style>
 <?php
@@ -25,8 +25,8 @@
             <?php echo $option['text'];?>
         </div>
         <div style="width:50%;display:flex;align-items:center">
-            <div class="line" style="width:<?=$rate*0.8*100?>%"></div>
-            <div class="info" style="width: 20%;"><?=$option['vote'];?>票(<?=round($rate*100);?>%)</div>
+            <div class="line" style="width:<?=$rate*0.8*100;?>%;"></div>
+            <div class="info">(<?= round($rate*100);?>%)</div>
         </div>
     </div>
     <?php endforeach; ?>

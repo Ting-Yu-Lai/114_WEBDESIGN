@@ -1,12 +1,12 @@
-<?php 
+<?php
+include_once "./db.php";
 
-include_once "db.php";
-
-$option =$Que->find($_POST['option']);
+$option = $Que->find($_POST['option']);
 $subject = $Que->find($option['subject_id']);
 
 $option['vote']++;
 $subject['vote']++;
+
 
 $Que->save($option);
 $Que->save($subject);
