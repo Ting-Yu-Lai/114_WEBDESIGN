@@ -1,30 +1,20 @@
 <div class="nav">
-    目前位置: 首頁 > 分類網誌 > <span id="navType">健康新知</span>
+    目前位置 > 首頁 > 分類網誌 > <span id="#navType">健康新知</span>
 </div>
-<fieldset style="display: inline-block;vertical-align:top;width:120px">
+<fieldset style="width:120px;display:inline-block;vertical-align:top;">
     <legend>分類網誌</legend>
     <div><a class="typeLink" data-type="1">健康新知</a></div>
     <div><a class="typeLink" data-type="2">菸害防治</a></div>
     <div><a class="typeLink" data-type="3">癌症防治</a></div>
     <div><a class="typeLink" data-type="4">慢性病防治</a></div>
 </fieldset>
-<fieldset style="display: inline-block;vertical-align:top;width:590px;">
+<fieldset style="width: 590px;display:inline-block;vertical-align:top;">
     <legend>文章列表</legend>
     <div id="typeList"></div>
     <div id="Post"></div>
 </fieldset>
 <script>
     getList(1);
-
-    $(".typeLink").on("click", function() {
-        // console.log("clickok");
-        let tmpT = $(this).text();
-        $("#navType").text(tmpT);
-        let typeId = $(this).data("type");
-        // console.log(typeId);
-
-        getList(typeId);
-    })
 
     function getPost(id) {
         $.get("./api/getPost.php", {
@@ -36,7 +26,7 @@
     }
 
     $(".postItem").on("click", function() {
-        let postId = $(this).data("post");
+        let postId = $(this).data('post');
         getPost(postId);
     })
 
@@ -47,9 +37,7 @@
             $("#Post").html("");
             $("#typeList").html(res);
             $(".postItem").on("click", function() {
-                let postId = $(this).data("post");
-                console.log(postId);
-                
+                let postId = $(this).data('post');
                 getPost(postId);
             })
         })

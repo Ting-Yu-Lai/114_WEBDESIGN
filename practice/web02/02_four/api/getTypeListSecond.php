@@ -1,11 +1,10 @@
 <?php
-include_once "./db.php";
+include_once "db.php";
 
 $news = $News->all(['type'=>$_GET['type']]);
 foreach($news as $new):
 ?>
 <div>
-    <!-- 我要給出id才可以點下去之後 等等讓後端知道我要哪一篇文章 -->
     <a href="#" class="postItem" data-post="<?=$new['id'];?>">
         <?=$new['title'];?>
     </a>
