@@ -1,6 +1,20 @@
 <?php
+
 session_start();
 date_default_timezone_set("Asia/Taipei");
+
+function dd($data)
+{
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+}
+function to($url)
+{
+    header("location:{$url}");
+}
+
+
 
 $Type = [
     1 => "健康新知",
@@ -9,22 +23,10 @@ $Type = [
     4 => "慢性病防治",
 ];
 
-function dd($data)
-{
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>";
-}
-
-function to($url)
-{
-    header("location:{$url}");
-}
-
 class DB
 {
-    private $table;
     private $pdo;
+    private $table;
     private $dsn = "mysql:host=localhost;dbname=web02_03;charset=utf8";
 
     function __construct($table)
@@ -53,7 +55,7 @@ class DB
                 $sql .= $arg[0];
             }
         }
-        if ($arg[1]) {
+        if (isset($arg[1])) {
             $sql .= $arg[1];
         }
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -70,11 +72,12 @@ class DB
                 $sql .= $arg[0];
             }
         }
-        if ($arg[1]) {
+        if (isset($arg[1])) {
             $sql .= $arg[1];
         }
         return $this->pdo->query($sql)->fetchColumn();
     }
+    
     function sum($col, ...$arg)
     {
         $sql = "select sum($col) from $this->table ";
@@ -86,11 +89,12 @@ class DB
                 $sql .= $arg[0];
             }
         }
-        if ($arg[1]) {
+        if (isset($arg[1])) {
             $sql .= $arg[1];
         }
         return $this->pdo->query($sql)->fetchColumn();
     }
+    
     function max($col, ...$arg)
     {
         $sql = "select max($col) from $this->table ";
@@ -102,7 +106,7 @@ class DB
                 $sql .= $arg[0];
             }
         }
-        if ($arg[1]) {
+        if (isset($arg[1])) {
             $sql .= $arg[1];
         }
         return $this->pdo->query($sql)->fetchColumn();
@@ -133,18 +137,43 @@ class DB
         return $this->pdo->exec($sql);
     }
 
+
     function save($a)
     {
         if (isset($a['id'])) {
-            $sql = "insert into $this->table ";
+            $sql = "update $this->table set ";
             $tmp = $this->a2s($a);
             $sql .= join(" , ", $tmp) . " where `id` = {$a['id']}";
         } else {
-            $sql = "update $this->table set ";
+            $sql = "insert into $this->table ";
             $key = join("`,`", array_keys($a));
             $val = join("','", array_values($a));
-            $sql .= "(`$key`) values ('$val') ";
+            $sql .= "(`$key`) values ('$val')";
         }
+        // echo $sql;
         return $this->pdo->exec($sql);
     }
+}
+
+$Visit = new DB('visit');
+$Que = new DB('que');
+$Log = new DB('log');
+$User = new DB('user');
+$News = new DB('news');
+
+// $User->save(['acc'=>'admin','pw'=>'1234','mail'=>'admin@labor.gov.tw']);
+// $User->save(['acc'=>'test','pw'=>'5678','mail'=>'test@labor.gov.tw']);
+// $User->save(['acc'=>'mem01','pw'=>'mem01','mail'=>'mem01@labor.gov.tw']);
+// $User->save(['acc'=>'mem02','pw'=>'mem02','mail'=>'mem02@labor.gov.tw']);
+
+
+if(!isset($_SESSION['visit'])) {
+    $today = $Visit->find(['date'=>date("Y-m-d")]);
+    if(empty($today)) {
+        $Visit->save(['date'=>date("Y-m-d"),'visit'=>1]);
+    }else{
+        $today['visit']++;
+        $Visit->save($today);
+    }
+    $_SESSION['visit'] = 1;
 }
