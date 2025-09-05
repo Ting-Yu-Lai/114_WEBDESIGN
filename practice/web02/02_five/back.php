@@ -20,7 +20,7 @@
     </div>
     <div id="all">
         <div id="title" >
-            <?=date("m 月 d 日 l");?> | 今日瀏覽: <?=$Visit->find(['date'=>date("Y-m-d")])['visit'];?> |
+            back<?=date("m 月 d 日 l");?> | 今日瀏覽: <?=$Visit->find(['date'=>date("Y-m-d")])['visit'];?> |
             累積瀏覽:<?=$Visit->sum('visit');?>
             <a href="index.php" style="float:right">回首頁</a>
         </div>
