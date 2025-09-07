@@ -33,7 +33,7 @@
             <div class="hal" id="lef">
                 <a class="blo" href="?do=login">帳號管理</a>
                 <a class="blo" href="?do=po">分類網誌</a>
-                <a class="blo" href="?do=news">最新文章</a>
+                <a class="blo" href="?do=news">最新文章管理</a>
                 <a class="blo" href="?do=know">講座管理</a>
                 <a class="blo" href="?do=que">問卷調查</a>
             </div>
