@@ -115,7 +115,7 @@ class DB
         } else {
             $sql .= " where `id` = '$id'";
         }
-        return $this->pdo->query($id)->fetch(PDO::FETCH_ASSOC);
+        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
     function del($id)
