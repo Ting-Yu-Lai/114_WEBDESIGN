@@ -51,7 +51,7 @@ class DB
         if (isset($a[1])) {
             $sql .= $a[1];
         }
-        return $this->pdo->query($a)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     function count(...$a)
@@ -68,7 +68,7 @@ class DB
         if (isset($a[1])) {
             $sql .= $a[1];
         }
-        return $this->pdo->query($a)->fetchColumn();
+        return $this->pdo->query($sql)->fetchColumn();
     }
     
     function max($col,...$a)
@@ -85,7 +85,8 @@ class DB
         if (isset($a[1])) {
             $sql .= $a[1];
         }
-        return $this->pdo->query($a)->fetchColumn();
+        echo $sql;
+        return $this->pdo->query($sql)->fetchColumn();
     }
     
     function sum($col,...$a)
@@ -102,7 +103,7 @@ class DB
         if (isset($a[1])) {
             $sql .= $a[1];
         }
-        return $this->pdo->query($a)->fetchColumn();
+        return $this->pdo->query($sql)->fetchColumn();
     }
 
     function find($id)
@@ -140,6 +141,7 @@ class DB
             $v = join("','",array_values($a));
             $sql .= "(`$k`) values ('$v')";
         }
+        echo $sql;
         return $this->pdo->exec($sql);
     }
 }
