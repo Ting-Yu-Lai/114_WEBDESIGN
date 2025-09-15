@@ -16,12 +16,12 @@
         <div>預告片操作</div>
     </div>
     <div class="rrTab">
-        <?php
-            $rows = $Rr->all(' order by `rank`');
-            foreach ($rows as $idx => $row):
-            $prev = ($idx-1>=0)?$rows[$idx-1]['id']:$row['id'];
-            $next = ($idx+1 < count($rows) )?$rows[$idx+1]['id']:$row['id'];
-        ?>
+            <?php
+                $rows = $Rr->all(' order by `rank`');
+                foreach ($rows as $idx => $row):
+                $prev = ($idx-1 >= 0)?$rows[$idx-1]['id']:$row['id'];
+                $next = ($idx+1 < count($rows) )?$rows[$idx+1]['id']:$row['id'];
+            ?>
             <div class="ct" style="display: flex;justify-content:space-around;text-align:center;">
                 <div>
                     <img style="width: 70px;height:90px" src="./image/<?=$row['img'];?>" alt="">
