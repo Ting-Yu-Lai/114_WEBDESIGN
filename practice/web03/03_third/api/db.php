@@ -147,3 +147,4 @@ class DB
 }
 
 $Rr = new DB("rr"); //預告片
+$Vv = new DB("vv"); //院線片
