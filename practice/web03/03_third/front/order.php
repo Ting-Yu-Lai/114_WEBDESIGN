@@ -56,8 +56,23 @@
     });
     
     $("#date").on("change",function() {
+        // console.log($(this).val());
+        
         getSessions($("#movie").val(),$(this).val());
     });
+
+    $(".btn-submit").on("click",function(){
+        $.get("./api/getBooking.php",{
+            id: $("#movie").val(),
+            date: $("#date").val(),
+            session: $("#session").val(),
+        }, (res)=>{
+            $("#booking").html(res);
+            // $('.btn-prev').on("click",function(){})
+            $("#orderT").hide();
+            $("#booking").show();
+        })
+    })
 
     function getMovie() {
         $.get("./api/getMovies.php",{id:getId()},function(res) { 
@@ -79,7 +94,9 @@
     }
 
     function getSessions(movieId, date) {
+        
         $.get("./api/getSess.php",{movieId,date},function(res) {
+            console.log(res);
             $("#session").html(res);
         })
     }
