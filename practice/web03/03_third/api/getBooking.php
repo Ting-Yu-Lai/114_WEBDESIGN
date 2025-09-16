@@ -95,4 +95,12 @@
         $("#tickets").text(selectedSeats.length);
     })
 
+    $(".btn-order").on("click",function(){
+        $.post("./api/booking.php",{
+            movie: "<?=$Vv->find($_GET['id'])['name'];?>",
+            date: "<?=$_GET['date'];?>",
+            session: "<?= $_GET['session'];?>",
+            seats: selectedSeats
+        },(no)=>{})
+    });
 </script>
