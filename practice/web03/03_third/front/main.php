@@ -157,14 +157,42 @@ $rows = $Rr->all(['sh' => 1], " order by `rank` ");
     })
 
 </script>
+
+<style>
+    .movie-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-content: space-evenly;
+        height: 320px;
+    }
+    .movie {
+        width: 48%;
+        display: flex;
+        min-height: 100px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
+</style>
 <div class="half">
     <h1>院線片清單</h1>
     <div class="rb tab" style="width:95%;">
-        <table>
-            <tbody>
-                <tr></tr>
-            </tbody>
-        </table>
-        <div class="ct"> </div>
+        <div class="movie-list">
+            <?php
+                $today = date("Y-m-d");
+                $ondate = date("Y-m-d", strtotime("-2 days",strtotime($today)));
+                $div = 4;
+                $all = count($Vv->all(['sh'=>1]," and ondate between '$ondate' and '$today'"));
+                $page = ceil($all/$div);
+                $now = $_GET['p']??'1';
+                $start = ($now - 1)*$div;
+                $rows = $Vv->all(['sh'=>1]," and ondate between '$ondate' and '$today'");
+                foreach($rows as $row):
+            ?>
+            <div class="movie"></div>
+            <?php endforeach;?>
+        </div>
     </div>
 </div>
