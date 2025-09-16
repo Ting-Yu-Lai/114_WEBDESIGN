@@ -41,25 +41,48 @@
         <button class="btn-reset">重置</button>
     </div>
 </div>
+
+<div id="booking" style="display: none;">
+
+</div>
+
 <script>
     const url = new URLSearchParams(location.search);
     const getId = () => url.get("id") || 0;
     getMovie();
 
+    $("#movie").on("change",function() {
+        getDays($(this).val());
+    });
+    
+    $("#date").on("change",function() {
+        getSessions($("#movie").val(),$(this).val());
+    });
+
     function getMovie() {
         $.get("./api/getMovies.php",{id:getId()},function(res) { 
             // console.log(res);
             $("#movie").html(res);
-            getDays($("#movie"),val());
+            // console.log($("#movie").val());
+            
+            getDays($("#movie").val());
         })
     }
 
      function getDays(movieId){
-        $.get("./api/get_dates.php",{movieId},(dates)=>{
-            $('#date').html(dates);
+        $.get("./api/getDates.php",{movieId},(res)=>{
+            $('#date').html(res);
+            // console.log(res);
             //再將movie id 跟日期送去找場次
-            // getSessions(movieId,$('#date').val());
+            getSessions(movieId,$('#date').val());
         })
     }
+
+    function getSessions(movieId, date) {
+        $.get("./api/getSess.php",{movieId,date},function(res) {
+            $("#session").html(res);
+        })
+    }
+    
     
 </script>
