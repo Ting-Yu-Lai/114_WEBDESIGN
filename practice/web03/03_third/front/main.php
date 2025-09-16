@@ -165,11 +165,12 @@ $rows = $Rr->all(['sh' => 1], " order by `rank` ");
         justify-content: space-evenly;
         align-content: space-evenly;
         height: 320px;
+        
     }
     .movie {
         width: 48%;
         display: flex;
-        min-height: 100px;
+        min-height: 130px;
         box-sizing: border-box;
         border: 1px solid #ccc;
         font-size: 12px;
@@ -183,16 +184,49 @@ $rows = $Rr->all(['sh' => 1], " order by `rank` ");
             <?php
                 $today = date("Y-m-d");
                 $ondate = date("Y-m-d", strtotime("-2 days",strtotime($today)));
+                
                 $div = 4;
                 $all = count($Vv->all(['sh'=>1]," and ondate between '$ondate' and '$today'"));
                 $page = ceil($all/$div);
                 $now = $_GET['p']??'1';
                 $start = ($now - 1)*$div;
-                $rows = $Vv->all(['sh'=>1]," and ondate between '$ondate' and '$today'");
+                $rows = $Vv->all(['sh'=>1]," and ondate between '$ondate' and '$today' limit $start,$div");
                 foreach($rows as $row):
             ?>
-            <div class="movie"></div>
+            <div class="movie">
+                <div style="display: flex;width:100%;">
+                    <div style="width: 28%;display:flex;align-items:center;justify-content:center;" >
+                        <img style="width: 100%;height:80%;border:1px solid white" src="./image/<?=$row['img'];?>" alt="">
+                    </div>
+                    <div style="width: 70%;display:flex;flex-direction:column;font-size:12px;margin:auto">
+                        <div><?=$row['name'];?></div>
+                        <div>
+                            分級: <img src="./icon/03C0<?=$row['lv'];?>.png" style="width: 18px;height:18px" alt="">
+                            <?= $vvLv[$row['lv']];?>
+                        </div>
+                        <div>上映日期:<?= str_replace("-","/",$row['ondate']);?></div>
+                        <div>
+                            <button type="button" onclick="location.href='?do=intro&id=<?=$row['id'];?>'">劇情介紹</button>
+                            <button type="button" onclick="location.href='?do=order&id=<?=$row['id'];?>'">線上訂票</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <?php endforeach;?>
+        </div>
+        <div class="ct">
+            <?php if($now - 1 > 0):?>
+                <a href="index.php?p=<?=($now - 1);?>"> < </a>
+            <?php endif;?>
+            <?php
+                for($i=1;$i<=$page;$i++):
+                    $size = ($now == $i)?'24px':'';
+            ?>
+                <a href="index.php?p=<?=$i;?>" style="font-size: <?=$size;?>;"><?=$i;?></a>
+            <?php endfor;?>
+            <?php if($now + 1 <= $page):?>
+                <a href="index.php?p=<?=($now + 1);?>"> > </a>
+            <?php endif;?>
         </div>
     </div>
 </div>

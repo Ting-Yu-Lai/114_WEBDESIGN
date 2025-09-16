@@ -4,6 +4,13 @@ session_start();
 date_default_timezone_set("Asia/Taipei");
 
 
+$vvLv = [
+    1 => '普通級',
+    2 => '輔導級',
+    3 => '保護級',
+    4 => '限制級',
+];
+
 function dd($data)
 {
     echo "<pre>";
