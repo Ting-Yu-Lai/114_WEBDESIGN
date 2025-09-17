@@ -100,7 +100,7 @@ class DB
         if (isset($a[1])) {
             $sql .= $a[1];
         }
-        echo $sql;
+        // echo $sql;
         return $this->pdo->query($sql)->fetchColumn();
     }
     
@@ -156,7 +156,7 @@ class DB
             $v = join("','",array_values($a));
             $sql .= "(`$k`) values ('$v')";
         }
-        echo $sql;
+        // echo $sql;
         return $this->pdo->exec($sql);
     }
 }

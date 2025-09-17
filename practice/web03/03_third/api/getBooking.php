@@ -101,6 +101,9 @@
             date: "<?=$_GET['date'];?>",
             session: "<?= $_GET['session'];?>",
             seats: selectedSeats
-        },(no)=>{})
+        },(no)=>{
+            console.log(no);
+            location.href=`?do=result&no=${no}`;
+        })
     });
 </script>

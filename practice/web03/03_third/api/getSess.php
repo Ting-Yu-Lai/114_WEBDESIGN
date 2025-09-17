@@ -2,12 +2,13 @@
 include_once "db.php";
 $id = $_GET['movieId'];
 $date = $_GET['date'];
-
+// echo $id;
+// echo $date;
 $movie = $Vv->find($id);
 
 $start = 0;
 $hr = date("G");
-if($date = date("Y-m-d") && $hr > 13) {
+if($date == date("Y-m-d") && $hr > 13) {
     $start = ceil(($hr - 13)/2);
 }
 
